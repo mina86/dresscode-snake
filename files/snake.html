@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Snake</title>
+<link href="https://fonts.googleapis.com/css?family=Sarpanch:900"
+      rel=stylesheet>
+<style>
+  /* All colours from
+   * https://www.google.com/design/spec/style/color.html#color-color-palette
+   */
+  html, body {
+    background: #c8e6c9;
+    color: #000;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  h1, #content {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
+  h1 {
+    background: #1b5e20;
+    color: #a5d6a7;
+    width: 100%;
+    top: 0;
+    font-family: 'Sarpanch', 'Open Sans', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    font-size: 2em;
+    padding: 0.5em;
+    line-height: 1em;
+  }
+  #content {
+    bottom: 0;
+    height: 100%;
+    padding: 5em 1em 1em;
+  }
+
+  #welcome p {
+    margin: 1em 0;
+    line-height: 2em;
+  }
+  .kc {
+    border-radius: .2em;
+    border: 1px outset #607d8b;
+    padding: .1em .4em;
+    vertical-align: baseline;
+    line-height: 1.8em;
+    background: #cfd8dc;
+  }
+  .apple, .stone {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+  .apple {
+    border-radius: 50%;
+    background: #f44336;
+  }
+  .stone {
+    background: #212121;
+  }
+
+  #scores, #canvas {
+    display: none;
+  }
+  #scores {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1em;
+  }
+  #canvas {
+    position: absolute;
+  }
+</style>
+<h1 id=title>Snake</h1>
+<div id=content>
+  <div id=welcome>
+    <p>Naciśnij dowolny klawisz, aby rozpocząć grę.
+
+    <!-- a and d are for people used to wsad.
+         s and f are for people used to superior edsf.
+         a and e are for people used to wsad on superior Dvorak.
+         o and u are for people used to superior edsf on superior Dvorak.
+
+         The above classification is completely factual and not
+         influenced by my own opinions. :P
+      -->
+    <p><span class=kc>←</span>, <span class=kc>a</span>, <span class=kc>s</span>
+      lub <span class=kc>o</span>—skręt w lewo.</span><br>
+      <span class=kc>→</span>, <span class=kc>d</span>,
+      <span class=kc>f</span>, <span class=kc>e</span> lub
+      <span class=kc>u</span>—skręt w prawo.
+
+    <p>Czerwone kółka (<span class=apple></span>) to jabłka, które wąż
+      z chęcią zjada.  Zjadając je, wąż będzie się rósł.  Im dłuższy
+      wąż, tym więcej punktów!<br>
+      Czarne kwadraty (<span class=stone></span>) to kamienie, których
+      wąż musi unikać.
+
+    <p>Wraz z upływem czasu, wąż będzie przyśpieszał swój ruch.
+  </div>
+  <canvas width=801 height=451 id=canvas></canvas>
+  <p id=scores>Punkty: <span id=score>1</span>
+</div>
+<script src=snake-framework.js></script>
+<script src=snake.js></script>
