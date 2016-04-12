@@ -1,0 +1,145 @@
+html, body {
+    color: #000;
+    background: #efe0d2;
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, "Trebuchet MS", Tahoma, Helvetica, sans-serif;
+    text-rendering: optimizelegibility;
+}
+
+main {
+    padding: 1em 2em;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.80);
+}
+
+@media (min-width: 64em) {
+    main {
+        max-width: 64em;
+        margin: 1em auto;
+    }
+}
+
+@media (min-width: 400px) and (min-height:500px) {
+    body {
+        background: #efe0d2 url(snake.png) no-repeat bottom right fixed;
+    }
+}
+
+a, a code, a:link, a:link code {
+    text-decoration: none;
+    color: #00f;
+    border-bottom: 1px dotted #99f;
+}
+a:visited {
+    color: #63c;
+}
+a:hover, a:hover code, a:focus, a:focus code, a:active, a:active code {
+    text-decoration: none;
+    color: #09f;
+    border-bottom: 1px solid #09f;
+}
+h1 a, h1 a:link, h1 a:hover, h1 a:active, h1 a:focus, h1 a:visited,
+h2 a, h2 a:link, h2 a:hover, h2 a:active, h2 a:focus, h2 a:visited,
+h3 a, h3 a:link, h3 a:hover, h3 a:active, h3 a:focus, h3 a:visited {
+    border: none;
+    color: inherit;
+}
+
+nav {
+    float: right;
+    margin: 1em 0 1em 1em;
+    padding: 1em;
+    background: #cfc;
+    border: 1px dotted #0f0;
+    box-shadow: 5px 5px 5px #ccc;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav li {
+    line-height: 1.5em;
+    text-align: left;
+}
+nav ul ul {
+    margin: 0 2em;
+}
+nav a, nav a:link, nav a:hover, nav a:active, nav a:focus, nav a:visited {
+    border: none;
+}
+
+figure {
+    margin: 1em 0;
+    text-align: center;
+}
+figure img {
+    border: 1px solid #999;
+    max-width: 100%;
+}
+figcaption {
+    display: none;
+}
+iframe {
+    width: 100%;
+    margin: 2em auto;
+}
+
+p, li {
+    text-align: justify;
+    text-justify: distribute;
+    text-justify: newspaper;
+    line-height: 2em;
+}
+p img {
+    border: 1px solid #999;
+    background: #fff;
+}
+img.horse {
+    width: 40%;
+}
+img.dog {
+    width: 20%;
+}
+img.hedgehog {
+    width: 20%;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.75em 0;
+    font-weight: bold;
+}
+h2 {
+    font-size: 1.5em;
+    margin: 1em 0;
+    font-weight: bold;
+    border-bottom: 1px dotted #ccc;
+}
+h3 {
+    font-size: 1em;
+    margin: 1em 0;
+    font-weight: bold;
+}
+
+
+code {
+    font-family: "Input Sans", Verdana, "Trebuchet MS", Tahoma, Helvetica, sans-serif;
+    font-variant-numeric: lining-nums proportional-nums slashed-zero;
+    color: #363;
+}
+p code, li code {
+    padding: 0 0.25em;
+    background: #eee;
+}
+pre {
+    margin: 1em 3em;
+}
+
+ol {
+    list-style: decimal;
+}
+ol ol {
+    list-style: lower-roman;
+}
