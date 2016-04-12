@@ -21,8 +21,12 @@ main {
 }
 
 @media (min-width: 400px) and (min-height:500px) {
+    html {
+        height: 100%;
+    }
     body {
         background: #efe0d2 url(snake.png) no-repeat bottom right fixed;
+        min-height: 100%;
     }
 }
 
