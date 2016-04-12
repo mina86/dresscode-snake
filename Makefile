@@ -1,6 +1,7 @@
 all: gh-pages
-gh-pages: gh-pages/demo gh-pages/solution gh-pages/files \
-          gh-pages/index.html gh-pages/styles.css gh-pages/snake.png
+gh-pages: sans-demo gh-pages/demo
+sans-demo: gh-pages/solution gh-pages/files \
+           gh-pages/index.html gh-pages/styles.css gh-pages/snake.png
 
 clean:
 	rm -rf gh-pages solution.js
@@ -56,4 +57,4 @@ gh-pages/%: %
 
 
 .DELETE_ON_ERROR:
-.PHONY: gh-pages gh-pages/demo gh-pages/solution gh-pages/files clean
+.PHONY: sans-demo gh-pages gh-pages/demo gh-pages/solution gh-pages/files clean
