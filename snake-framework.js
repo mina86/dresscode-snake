@@ -121,9 +121,10 @@ var randomPoint = function() {
 
     /**
      * Element CANVAS na którym rysowana będzie plansza do gry.
-     * @const (!HTMLCanvasElement}
+     * @const {!HTMLCanvasElement}
      */
-    var canvas = document.getElementById('canvas');
+    var canvas = /** @type {!HTMLCanvasElement} */ (
+        document.getElementById('canvas'));
     if (!canvas || !canvas.getContext) {
         alert('Twoja przeglądarka nie obsługuje elementu CANVAS.');
         return;
@@ -132,19 +133,22 @@ var randomPoint = function() {
      * Kontekst 2D do rysowania na elemencie CANVAS.
      * @const {!CanvasRenderingContext2D}
      */
-    var ctx = canvas.getContext('2d');
+    var ctx = /** @type {!CanvasRenderingContext2D} */ (
+        canvas.getContext('2d'));
 
-    /** Element H1 na górze strony.  @const {!HTMLElement} */
+    /** Element H1 na górze strony.  @const {!Element} */
     var headerElement = document.getElementById('title');
 
     /**
      * Element do wyświetlania punktów na dole strony.
-     * @const {!HTMLElement}
+     * @const {!Element}
      */
-    var scoresElement = document.getElementById('scores');
+    var scoresElement = /** @type {!Element} */ (
+        document.getElementById('scores'));
 
-    /** Element zawierający liczbę punktów.  @const {!HTMLElement} */
-    var scoreElement = document.getElementById('score');
+    /** Element zawierający liczbę punktów.  @const {!Element} */
+    var scoreElement = /** @type {!Element} */ (
+        document.getElementById('score'));
 
     /** Czy gra jest aktywna?  @type {boolean} */
     var running = false;
@@ -310,14 +314,37 @@ var randomPoint = function() {
     };
 
     /**
-     * Mapowanie z jednoliterowego kierunku do pełnego dwuliterowego.
+     * Zwraca pierwszą część opisu kierunku.  Np. dla Direction.UP_FROM_LEFT
+     * jest to Direction.UP a dla Direction.LEFT jest to po prostu
+     * Direction.LEFT.
+     *
+     * @param {Direction} dir Kierunek.
+     * @return {Direction} Direction.UP, Direction.DOWN, Direction.LEFT lub
+     *     Direction.RIGHT zależnie od argumentu dir.
+     */
+    var directionHead = function(dir) {
+        return /** @type {Direction} */ (dir.charAt(0));
+    };
+
+    /**
+     * Mapowanie pomiędzy przeciwnymi, jednoliterowymi kierunkami.
      * @const {!Object<Direction, Direction>}
      */
-    var fullDirection = {
-        'l': 'lr',
-        'r': 'rl',
-        'u': 'ud',
-        'd': 'du'
+    var oppositeDirection = { 'l': 'r', 'r': 'l', 'u': 'd', 'd': 'u' };
+
+    /**
+     * Zwraca drugą część opisu kierunku.  Np. dla Direction.UP_FROM_LEFT jest
+     * to Direction.LEFT a dla Direction.LEFT jest to po prostu Direction.RIGHT
+     * (gdyż Direction.LEFT zachowuje się tak samo jak
+     * Direction.LEFT_FROM_RIGHT).
+     *
+     * @param {Direction} dir Kierunek.
+     * @return {Direction} Direction.UP, Direction.DOWN, Direction.LEFT lub
+     *     Direction.RIGHT zależnie od argumentu dir.
+     */
+    var directionTail = function(dir) {
+        return oppositeDirection[dir] || /** @type {Direction} */ (
+            dir.charAt(1));
     };
 
     /**
@@ -377,10 +404,9 @@ var randomPoint = function() {
      *     kierunku wąż się porusza.
      */
     game.drawSnakeHead = function drawSnakeHead(p, dir) {
-        dir = fullDirection[dir] || dir;
-        var rect = drawBodyPart(p, /** @type {Direction} */ (dir.charAt(1)));
+        var rect = drawBodyPart(p, directionTail(dir));
         var s = (rect[2] - rect[0]) / 3;
-        dir = /** @type {Direction} */ (dir.charAt(0));
+        dir = directionHead(dir);
 
         ctx.beginPath();
         ctx.fillStyle = Color.EYE;
@@ -405,8 +431,7 @@ var randomPoint = function() {
      * @param {Direction} dir Kierunek/kształt zadanego kawałka ciała węża.
      */
     game.drawSnakeBody = function drawSnakeBody(p, dir) {
-        dir = fullDirection[dir] || dir;
-        drawBodyPart(p, dir.charAt(0), dir.charAt(1));
+        drawBodyPart(p, directionHead(dir), directionTail(dir));
     };
 
     /**
@@ -416,7 +441,7 @@ var randomPoint = function() {
      * @param {Direction} dir Kierunek w którym ciało węża się kontynuuje.
      */
     game.drawSnakeTail = function drawSnakeTail(p, dir) {
-        drawBodyPart(p, dir.charAt(0));
+        drawBodyPart(p, directionHead(dir));
     };
 
     /* Obsługa klawiatury. */
