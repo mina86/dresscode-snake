@@ -81,14 +81,14 @@ var Direction = {
 
 /**
  * Funkcja zwraca liczbę całkowitą z zadanego przedziału.  Przedział jest
- * otwarty z prawej strony, np. random(10, 20) zwróci liczbę całkowitą
- * niemniejszą niż 10 ale mniejszą niż 20.
+ * domknięty z obu stron, np. random(10, 19) zwróci liczbę całkowitą n : 10 ≤
+ * n ≤ 19.
  * @param {number} n Lewa granica zakresu.
  * @param {number} m Prawa granica zakresu.
  * @return {number} Całkowita liczba losowa k taka, że n ≤ k < m.
  */
 var random = function(n, m) {
-    return n + ((Math.random() * (m - n)) >>> 0);
+    return n + ((Math.random() * (m + 1 - n)) >>> 0);
 };
 
 /**
@@ -98,7 +98,7 @@ var random = function(n, m) {
  * @return {{x:number, y:number}} Losowa współrzędna.
  */
 var randomPoint = function() {
-    return {x: random(0, WIDTH), y: random(0, HEIGHT)};
+    return {x: random(0, WIDTH - 1), y: random(0, HEIGHT - 1)};
 };
 
 
@@ -109,7 +109,7 @@ var randomPoint = function() {
     /** Minimalne opóźnienie.  @const {number} */
     var MIN_TIMEOUT = 100;
 
-    /** Colours for all the objects. @enum {string} */
+    /** Colory poszczególnych obiektów. @enum {string} */
     var Color = {
         SNAKE: '#aa00ff',
         EYE: '#2196f3',
@@ -119,28 +119,47 @@ var randomPoint = function() {
         STONE: '#424242'
     };
 
-    /** Canvas to draw on.  @const (!HTMLCanvasElement} */
-    var canvas = document.getElementById('canvas');
+    /**
+     * Element CANVAS na którym rysowana będzie plansza do gry.
+     * @const {!HTMLCanvasElement}
+     */
+    var canvas = /** @type {!HTMLCanvasElement} */ (
+        document.getElementById('canvas'));
     if (!canvas || !canvas.getContext) {
         alert('Twoja przeglądarka nie obsługuje elementu CANVAS.');
         return;
     }
-    /** Context used for drawing.  @const {!CanvasRenderingContext2D} */
-    var ctx = canvas.getContext('2d');
+    /**
+     * Kontekst 2D do rysowania na elemencie CANVAS.
+     * @const {!CanvasRenderingContext2D}
+     */
+    var ctx = /** @type {!CanvasRenderingContext2D} */ (
+        canvas.getContext('2d'));
 
-    /** H1 element on top of the page.  @const {!HTMLElement} */
+    /** Element H1 na górze strony.  @const {!Element} */
     var headerElement = document.getElementById('title');
 
-    /** Scores block on the bottom of the page.  @const {!HTMLElement} */
-    var scoresElement = document.getElementById('scores');
+    /**
+     * Element do wyświetlania punktów na dole strony.
+     * @const {!Element}
+     */
+    var scoresElement = /** @type {!Element} */ (
+        document.getElementById('scores'));
 
-    /** Element displaying score value.  @const {!HTMLElement} */
-    var scoreElement = document.getElementById('score');
+    /** Element zawierający liczbę punktów.  @const {!Element} */
+    var scoreElement = /** @type {!Element} */ (
+        document.getElementById('score'));
 
-    /** Weather the game is running.  @type {boolean} */
+    /** Czy gra jest aktywna?  @type {boolean} */
     var running = false;
 
-    /** Called after timeout.  Schedules next timeout if game is still on. */
+    /**
+     * Funkcja wołana po upływie czasu pojedynczego ruchu.
+     *
+     * Oblicza czas kolejnego ruchu, wywołuje game.nextMove i na końcu, jeżeli
+     * gra jest ciągle aktywna (zob. zmienną running), planuje następne
+     * wywołanie funkcji nextMove.
+     */
     var nextMove = function nextMoveInternal() {
         game.timeout = Math.max(game.timeout * 0.97, MIN_TIMEOUT);
         game.nextMove();
@@ -149,10 +168,17 @@ var randomPoint = function() {
         }
     };
 
-    /** Size of a single box including one of the grid lines. @type {number} */
+    /**
+     * Rozmiar w pikselach pojedynczego bloku na planszy do gry.  Jest on
+     * automatycznie dopasowywany do rozmiaru elementu CANVAS.
+     * @type {number}
+     */
     var box_size = 10;
 
-    /** Resizes canvas element to the biggest possible size. */
+    /**
+     * Powiększa element CANVAS do największego możliwego rozmiaru (tak aby
+     * nadal mieścił się na stronie) i uaktualnia zmienną box_szie.
+     */
     var resizeCanvas = function resizeCanvas() {
         var r = headerElement.getBoundingClientRect();
         var top = Math.ceil(r.bottom);
@@ -175,15 +201,15 @@ var randomPoint = function() {
     window.onresive = resizeCanvas;
 
     /**
-     * Sets displayed score.
-     * @param {number} value New score to dispaly.
+     * Ustawia wyświetlaną liczbę punktów.
+     * @param {number} value Liczba punktów do wyświetlenia.
      */
     game.setScore = function setScore(value) {
         scoreElement.firstChild.nodeValue = String(value);
     };
 
-    /** Starts the game. */
-    game.startGame = function startGame() {
+    /** Rozpoczyna grę. */
+    var startGame = function startGame() {
         if (running) {
             alert('Gra ciągle trwa.');
             return;
@@ -208,7 +234,7 @@ var randomPoint = function() {
         running = true;
     };
 
-    /** Stops the game when it’s over. */
+    /** Wstrzymuje grę.  Wyświetla komunikat z liczbą punktów. */
     game.stopGame = function stopGame() {
         if (running) {
             running = false;
@@ -216,7 +242,7 @@ var randomPoint = function() {
         }
     };
 
-    /** Clears the board and draws the grid. */
+    /** Czyści planszę i rysuje siatkę. */
     var clearBoard = function clearBoard() {
         var w = (WIDTH + 1) * box_size;
         var h = (HEIGHT + 1) * box_size;
@@ -236,8 +262,9 @@ var randomPoint = function() {
     };
 
     /**
-     * Draws an apple in given cell.
-     * @param {{x:number, y:number}} p Grid coordinate of the apple to draw.
+     * Rysuje jabłko na zadanej pozycji.
+     * @param {{x:number, y:number}} p Współrzędne jabłka w postaci obiektu
+     *     z polami x oraz y.
      */
     game.drawApple = function drawApple(p) {
         game.drawGrass(p);
@@ -250,8 +277,9 @@ var randomPoint = function() {
     };
 
     /**
-     * Draws a stone in given cell.
-     * @param {{x:number, y:number}} p Grid coordinate of the stone to draw.
+     * Rysuje kamień na zadanej pozycji.
+     * @param {{x:number, y:number}} p Współrzędne kamienia w postaci obiektu
+     *     z polami x oraz y.
      */
     game.drawStone = function drawStone(p) {
         game.drawGrass(p);
@@ -261,8 +289,10 @@ var randomPoint = function() {
     };
 
     /**
-     * Draws grass in (i.e. clears) given cell.
-     * @param {{x:number, y:number}} p Grid coordinate of the cell to clear.
+     * Rysuje trawę na zadanej pozycji.  Innymi słowy, czyści pole z tego co
+     * mogło być na nim wcześniej narysowane.
+     * @param {{x:number, y:number}} p Współrzędne pola w postaci obiektu
+     *     z polami x oraz y.
      */
     game.drawGrass = function drawGrass(p) {
         var x = p.x * box_size;
@@ -284,18 +314,41 @@ var randomPoint = function() {
     };
 
     /**
-     * Mapping from one-letter direction to two-letter one.
-     * @const {!Object<Direction, Direction>}
+     * Zwraca pierwszą część opisu kierunku.  Np. dla Direction.UP_FROM_LEFT
+     * jest to Direction.UP a dla Direction.LEFT jest to po prostu
+     * Direction.LEFT.
+     *
+     * @param {Direction} dir Kierunek.
+     * @return {Direction} Direction.UP, Direction.DOWN, Direction.LEFT lub
+     *     Direction.RIGHT zależnie od argumentu dir.
      */
-    var fullDirection = {
-        'l': 'lr',
-        'r': 'rl',
-        'u': 'ud',
-        'd': 'du'
+    var directionHead = function(dir) {
+        return /** @type {Direction} */ (dir.charAt(0));
     };
 
     /**
-     * Draws snake’s body parts.
+     * Mapowanie pomiędzy przeciwnymi, jednoliterowymi kierunkami.
+     * @const {!Object<Direction, Direction>}
+     */
+    var oppositeDirection = { 'l': 'r', 'r': 'l', 'u': 'd', 'd': 'u' };
+
+    /**
+     * Zwraca drugą część opisu kierunku.  Np. dla Direction.UP_FROM_LEFT jest
+     * to Direction.LEFT a dla Direction.LEFT jest to po prostu Direction.RIGHT
+     * (gdyż Direction.LEFT zachowuje się tak samo jak
+     * Direction.LEFT_FROM_RIGHT).
+     *
+     * @param {Direction} dir Kierunek.
+     * @return {Direction} Direction.UP, Direction.DOWN, Direction.LEFT lub
+     *     Direction.RIGHT zależnie od argumentu dir.
+     */
+    var directionTail = function(dir) {
+        return oppositeDirection[dir] || /** @type {Direction} */ (
+            dir.charAt(1));
+    };
+
+    /**
+     * Rysuje kawałek ciała węża.
      *
      *        x1     x1+s    x2-s     x2
      *  y1    +-------*-------*-------+
@@ -306,11 +359,13 @@ var randomPoint = function() {
      *        |                       |
      *  y2    +-------*-------*-------+
      *
-     * @param {{x:number, y:number}} p Grid coordinate of the head.
-     * @param {...} var_args Parts to draw, can be 'l', 'r', 'u' or 'd'
-     *     for part touching left, right, up or down edge of the grid.
+     * @param {{x:number, y:number}} p Współrzędne kawałka ciała węża w postaci
+     *     obiektu z polami x oraz y.
+     * @param {...Direction} var_args Część do narysowania.  Może być 'l', 'r',
+     *     'u' lub 'd' dla odpowiednio części ciała dotykającej lewej, prawej,
+     *     górnej lub dolnej krawędzie pola.  Środek pola jest zawsze rysowany.
      * @return {!Array<number>} Cztery współrzędne małego kwadratu w środku
-     *     pola.
+     *     pola.  Innymi słowy [x1 + s, y1 + s, x2 - s, y2 - s].
      */
     var drawBodyPart = function(p, var_args) {
         game.drawGrass(p);
@@ -341,15 +396,17 @@ var randomPoint = function() {
     };
 
     /**
-     * Draws snake’s head including cute eyes. :]
-     * @param {{x:number, y:number}} p Grid coordinate of the head.
-     * @param {Direction} dir Snake’s direction.
+     * Rysuje głowę węża wraz z jego oczami.
+     * @param {{x:number, y:number}} p Współrzędne głowy węża w postaci obiektu
+     *     z polami x oraz y.
+     * @param {Direction} dir Kierunek w który patrzy się wąż.  Jeżeli wąż
+     *     składa się nie tylko z głowy, również określa gdzie z którego
+     *     kierunku wąż się porusza.
      */
     game.drawSnakeHead = function drawSnakeHead(p, dir) {
-        dir = fullDirection[dir] || dir;
-        var rect = drawBodyPart(p, dir.charAt(1));
+        var rect = drawBodyPart(p, directionTail(dir));
         var s = (rect[2] - rect[0]) / 3;
-        dir = /** @type {Direction} */ (dir.charAt(0));
+        dir = directionHead(dir);
 
         ctx.beginPath();
         ctx.fillStyle = Color.EYE;
@@ -368,28 +425,29 @@ var randomPoint = function() {
     };
 
     /**
-     * Draws snake’s body part.
-     * @param {{x:number, y:number}} p Grid coordinate of the stone to body.
-     * @param {Direction} dir Snake’s body part’s direction.
+     * Rysuje kawałek ciała węża.
+     * @param {{x:number, y:number}} p Współrzędne kawałka ciała węża w postaci
+     *     obiektu z polami x oraz y.
+     * @param {Direction} dir Kierunek/kształt zadanego kawałka ciała węża.
      */
     game.drawSnakeBody = function drawSnakeBody(p, dir) {
-        dir = fullDirection[dir] || dir;
-        drawBodyPart(p, dir.charAt(0), dir.charAt(1));
+        drawBodyPart(p, directionHead(dir), directionTail(dir));
     };
 
     /**
-     * Draws snake’s tail.
-     * @param {{x:number, y:number}} p Grid coordinate of the tail.
-     * @param {Direction} dir Snake’s tail direction.
+     * Rysuje ogon węża.
+     * @param {{x:number, y:number}} p Współrzędne ogona węża w postaci obiektu
+     *     z polami x oraz y.
+     * @param {Direction} dir Kierunek w którym ciało węża się kontynuuje.
      */
     game.drawSnakeTail = function drawSnakeTail(p, dir) {
-        drawBodyPart(p, dir.charAt(0));
+        drawBodyPart(p, directionHead(dir));
     };
 
-    /* Handles the key events controlling the game. */
+    /* Obsługa klawiatury. */
     window.onkeyup = function kepUpHandler(ev) {
         if (!running) {
-            game.startGame();
+            startGame();
             return true;
         }
 
