@@ -84,10 +84,6 @@ figure img {
 figcaption {
     display: none;
 }
-iframe {
-    width: 100%;
-    margin: 2em auto;
-}
 
 p, li {
     text-align: justify;
@@ -124,7 +120,9 @@ p code, li code {
     background: #eee;
 }
 pre {
-    margin: 1em 3em;
+    margin: 0.5em 1.5em;
+    padding: 0.5em 1.5em;
+    background: #eee;
 }
 
 ol {
