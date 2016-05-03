@@ -209,7 +209,7 @@ var randomPoint = function() {
     };
 
     /** Rozpoczyna grę. */
-    game.startGame = function startGame() {
+    var startGame = function startGame() {
         if (running) {
             alert('Gra ciągle trwa.');
             return;
@@ -447,7 +447,7 @@ var randomPoint = function() {
     /* Obsługa klawiatury. */
     window.onkeyup = function kepUpHandler(ev) {
         if (!running) {
-            game.startGame();
+            startGame();
             return true;
         }
 
