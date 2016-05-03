@@ -81,14 +81,14 @@ var Direction = {
 
 /**
  * Funkcja zwraca liczbę całkowitą z zadanego przedziału.  Przedział jest
- * otwarty z prawej strony, np. random(10, 20) zwróci liczbę całkowitą
- * niemniejszą niż 10 ale mniejszą niż 20.
+ * domknięty z obu stron, np. random(10, 19) zwróci liczbę całkowitą n : 10 ≤
+ * n ≤ 19.
  * @param {number} n Lewa granica zakresu.
  * @param {number} m Prawa granica zakresu.
  * @return {number} Całkowita liczba losowa k taka, że n ≤ k < m.
  */
 var random = function(n, m) {
-    return n + ((Math.random() * (m - n)) >>> 0);
+    return n + ((Math.random() * (m + 1 - n)) >>> 0);
 };
 
 /**
@@ -98,7 +98,7 @@ var random = function(n, m) {
  * @return {{x:number, y:number}} Losowa współrzędna.
  */
 var randomPoint = function() {
-    return {x: random(0, WIDTH), y: random(0, HEIGHT)};
+    return {x: random(0, WIDTH - 1), y: random(0, HEIGHT - 1)};
 };
 
 
