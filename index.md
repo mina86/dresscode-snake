@@ -169,3 +169,9 @@ TODO: Opis współrzędnych oraz faktu, że framework korzysta z obiektów
     Narysuje węża w kształcie pokazanym na poniższym obrazku:
 
     ![Przykładowy wąż](snake-draw-example.png)
+
+### `snake.html`
+
+Plik `snake.html` to prosty dokument HTML, który definiuje przestrzeń,
+na której rysowana będzie plansza do gry i ruchy węża, a także
+element, w którym wyświetlany będzie aktualny wynik gry.
