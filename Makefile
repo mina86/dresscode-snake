@@ -1,7 +1,6 @@
 all: gh-pages
 gh-pages: sans-demo gh-pages/demo
-sans-demo: gh-pages/solution gh-pages/files \
-           gh-pages/index.html gh-pages/styles.css \
+sans-demo: gh-pages/files gh-pages/index.html gh-pages/styles.css \
            gh-pages/snake.png gh-pages/snake-draw-example.png
 
 clean:
