@@ -79,15 +79,10 @@ figure {
     text-align: center;
 }
 figure img {
-    border: 1px solid #999;
     max-width: 100%;
 }
 figcaption {
     display: none;
-}
-iframe {
-    width: 100%;
-    margin: 2em auto;
 }
 
 p, li {
@@ -95,19 +90,6 @@ p, li {
     text-justify: distribute;
     text-justify: newspaper;
     line-height: 2em;
-}
-p img {
-    border: 1px solid #999;
-    background: #fff;
-}
-img.horse {
-    width: 40%;
-}
-img.dog {
-    width: 20%;
-}
-img.hedgehog {
-    width: 20%;
 }
 
 h1 {
@@ -138,7 +120,9 @@ p code, li code {
     background: #eee;
 }
 pre {
-    margin: 1em 3em;
+    margin: 0.5em 1.5em;
+    padding: 0.5em 1.5em;
+    background: #eee;
 }
 
 ol {
