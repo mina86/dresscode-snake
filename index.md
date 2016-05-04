@@ -1,29 +1,50 @@
-**Start:** XXX
+**Start:** 5 maja 2016
 
-**Termin nadsyłania rozwiązań:** XXX
+**Termin nadsyłania rozwiązań:** 30 maja 2016
 
-**Czas, który będzie Ci potrzebny na rozwiązanie całego zadania**: XXX
+**Czas, który będzie Ci potrzebny na rozwiązanie całego zadania**: 16 godzin
 
-Po tygodniach ciężkiej, aczkolwiek mamy nadzieje ciekawej
-i inspirującej, pracy, czas na trochę rozrywki!  Wybór nie jest może
+Po tygodniach ciężkiej, aczkolwiek (mamy nadzieję :) ) ciekawej
+i inspirującej pracy, czas na trochę rozrywki!  Wybór nie jest może
 największy, ale co powiesz na [partyjkę
 Węża](http://mina86.github.io/dresscode-snake/demo/snake.html)?
 
-Pewnie już się domyślasz co jest kolejnym zadaniem.  Tym razem, Twoim
+Pewnie już się domyślasz, co jest kolejnym zadaniem.  Tym razem Twoim
 celem będzie napisanie gry Wąż.  W tym celu będziesz musiała
 zastosować metodologię [programowania
-zdarzeniowego](https://pl.wikipedia.org/wiki/Programowanie_sterowane_zdarzeniami),
-która pozwala na pisanie kodu reagującego na zdarzenia, takie jak
-naciśnięcie klawisza przez użytkownika, na które program nie ma
-bezpośredniego wpływu.
+zdarzeniowego](https://pl.wikipedia.org/wiki/Programowanie_sterowane_zdarzeniami)—czyli
+w prostszych słowach: napiszesz kod, który umie zareagować na
+"zdarzenia" niezależne od niego—np. po naciśnięciu przez użytkownika
+danego klawisza wykona określoną czynność.
 
-## Wąż
+## Co to jest wąż?
 
-TODO: Krótki opis gry w węża.
+Otóż wąż to jedna z najprostszych—a jednocześnie kiedyś najbardziej
+popularnych—gier komputerowych (nie wierzysz? zapytaj rodziców).
+W grze gracz steruje długim i cienkim stworzeniem (podobnym do węża),
+które porusza się po planszy, zbierając jedzenie.  Wąż stara się NIE
+uderzyć własną głową o rozstawione na planszy przeszkody, a także
+o kawałek własnego ogona (w przeciwnym razie gra się kończy).  Problem
+w tym, że im więcej wąż „zje”, tym szybciej się porusza, a także tym
+dłuższy robi się jego ogon, i tym trudniej nim sterować—zresztą
+[przekonaj się
+sama](http://mina86.github.io/dresscode-snake/demo/snake.html) :-)
+
+W naszym przykładzie wężem steruje się za pomocą klawiszy strzałek
+(lewo, prawo).
+
+## Co będzie Ci potrzebne
+
+Swoją grę będziesz pisać w języku JavaScript i będziesz potrzebować
+solidnej znajomości jego podstaw.  Dlatego, jeśli nie przerobiłaś przy
+okazji poprzednich zadań kursu JavaScript, zachęcamy Cię do zrobienia
+tego teraz.  **Zarezerwuj sobie na to co najmniej 5 godzin.**
+Konkretne sekcje kursów, które Ci się przydadzą, wymieniliśmy na [tej
+stronie](http://mina86.github.io/dresscode-sorting/).
 
 ## Zadanie
 
-Aby ułatwić zadanie, przegotowaliśmy szkielet rozwiązania w postaci
+Aby ułatwić Ci zadanie, przygotowaliśmy szkielet rozwiązania w postaci
 trzech plików.  Pobierz na swój komputer następujące pliki:
 
  *  [`snake.html`](http://mina86.github.io/dresscode-snake/files/snake.html),
@@ -32,43 +53,51 @@ trzech plików.  Pobierz na swój komputer następujące pliki:
 
 ### `snake.js`
 
-Twoim zadaniem będzie uzupełnienie pliku `snake.js`.  Zawiera on
-definicje czterech pustych funkcji, które mają na celu obsługę logiki
-gry.
+**Twoim zadaniem będzie uzupełnienie pliku** `snake.js`.  W tej chwili
+znajdziesz w nim definicje czterech funkcji, które będą pomagać wężowi
+„poruszać się”.  W naszym pliku te funkcje są puste—napisanie ich
+treści należy do Ciebie.
 
- *  Funkcja `game.prepareBoard` jest wywołana na początku gry.  Jej
-    celem jest przygotowanie, czy też wyzerowanie stanu gry.  W skład
-    tej operacji ustawienie węża, jabłek oraz kamieni na planszy
-    wliczając to narysowanie tych elementów korzystając z funkcji
-    `game.draw*’ opisanych niżej.
+ *  Funkcja `game.prepareBoard` (czyli po angielsku „przygotuj
+    planszę”) będzie wykonywana na samym początku każdej gry.  Jej
+    celem jest przygotowanie planszy („wyzerowanie stanu gry”).  Aby
+    przygotować planszę, powinnaś ustawić i narysować na niej węża,
+    jabłka oraz kamienie.  Rysować możesz, korzystając z gotowych
+    funkcji `game.draw...` opisanych poniżej.
 
- *  Funkcje `game.turnLeft` oraz `game.turnRight` są wołane, gdy gracz
-    odpowiednio wciśnie przycisk skrętu w lewo lub w prawo.  Istotne
-    jest, że samo wciśnięcie klawisza nie powoduje jeszcze ruchu węża.
-    Funkcja powinna jedynie zapisać intencję gracza i uaktualnić
-    grafikę tak, aby głowa węża wskazywała w odpowiednią stronę.
+ *  Funkcje `game.turnLeft` oraz `game.turnRight` (czyli po angielsku
+    „skręć w lewo” i „skręć w prawo”) będą wykonywane za każdym razem,
+    gdy gracz wciśnie przycisk skrętu (strzałkę) w lewo lub w prawo.
+    Uwaga: samo wciśnięcie klawisza nie powoduje jeszcze ruchu węża.
 
-    Dopiero funkcja `game.nextMove` powinna poruszyć węża.
+    Funkcja `game.turnLeft` i `game.turnRight` powinna tylko „obrócić”
+    głowę węża—narysować ją tak, by wskazywała w odpowiednią stronę.
 
-    Uwaga: należy poprawnie obsłużyć niemożliwe kombinacje takie jak
-    próba dwukrotnego skrętu w lewo, które zazwyczaj powodowałyby
-    obrót węża o 180 stopni i tym samym kolizje z jego własnym ciałem.
+    Dopiero funkcja `game.nextMove` (czyli „wykonaj następny ruch”)
+    będzie poruszać węża.
 
- *  Funkcja `game.nextMove` jest wołana, gdy następuje ruch węża.  Jej
-    celem jest sprawdzenie, czy w efekcie wąż uderza w kamień lub
+    **Uwaga**: Twoim zadaniem będzie napisać funkcje tak, aby troszkę
+    ułatwić graczom grę, gdy będą naciskać klawisze bardzo szybko.  Na
+    przykład w przypadku szybkiego dwukrotnego skrętu w lewo wąż nie
+    powinien „zawracać w miejscu”, ale najpierw skręcić o jedno
+    „oczko” w lewo, i dopiero tam wykonać kolejny zakręt.  Chodzi
+    o to, aby wąż nie „zjadał” zbyt łatwo samego siebie.
+
+ *  Funkcja `game.nextMove` (czyli „wykonaj następny ruch”) będzie
+    wykonywana za każdym razem, kiedy ma nastąpić ruch węża.  Funkcja
+    powinna sprawdzać, czy w efekcie ruchu wąż uderza w kamień lub
     swoje własne ciało (co kończy grę), czy może zjada jabłko (co go
-    wydłuża i w efekcie zwiększa liczbę punktów).
+    wydłuża i zwiększa liczbę punktów).
 
-    Wszystkim zmianom na planszy powinny, oczywiście, towarzyszyć
-    wywołania funkcji `game.draw*`, które uaktualniają wygląd planszy.
+    Aby zmienić wygląd planszy, powinnaś wołać funkcje `game.draw...`
+    (czyli „narysuj ...”), które uaktualniają wygląd planszy.
 
 
 ### `snake-framework.js`
 
-Pliku `snnake-framework.js` nie musisz edytować, choć możesz
-oczywiście do niego zajrzeć, aby zobaczyć jak zaimplementowanie są
-poszczególne funkcje.  Zawiera on funkcje i zmienne pomocne przy
-implementacji gry Wąż.
+Pliku `snake-framework.js` nie musisz zmieniać—choć możesz oczywiście
+do niego zajrzeć, aby zobaczyć jak napisane są poszczególne funkcje.
+Ten plik zawiera funkcje i zmienne pomocne przy implementacji gry Wąż.
 
 TODO: Opis współrzędnych oraz faktu, że framework korzysta z obiektów
       z dwoma polami–x oraz y–do reprezentacji współrzędnej.
