@@ -25,18 +25,22 @@
 <li><a href="#snake-framework.js"><code>snake-framework.js</code></a></li>
 <li><a href="#snake.html"><code>snake.html</code></a></li>
 </ul></li>
+<li><a href="#wskazówki">Wskazówki</a></li>
+<li><a href="#wszystko-jasne">Wszystko jasne?</a></li>
 </ul>
 </nav>
 <p><strong>Start:</strong> 5 maja 2016</p>
 <p><strong>Termin nadsyłania rozwiązań:</strong> 30 maja 2016</p>
 <p><strong>Czas, który będzie Ci potrzebny na rozwiązanie całego zadania</strong>: 16 godzin</p>
 <p>Po tygodniach ciężkiej, aczkolwiek (mamy nadzieję :) ) ciekawej i inspirującej pracy, czas na trochę rozrywki! Wybór nie jest może największy, ale co powiesz na <a href="http://mina86.github.io/dresscode-snake/demo/snake.html">partyjkę Węża</a>?</p>
-<p>Pewnie już się domyślasz, co jest kolejnym zadaniem. Tym razem Twoim celem będzie napisanie gry Wąż. W tym celu będziesz musiała zastosować metodologię <a href="https://pl.wikipedia.org/wiki/Programowanie_sterowane_zdarzeniami">programowania zdarzeniowego</a>—czyli w prostszych słowach: napiszesz kod, który umie zareagować na &quot;zdarzenia&quot; niezależne od niego—np. po naciśnięciu przez użytkownika danego klawisza wykona określoną czynność.</p>
+<p>Pewnie już się domyślasz, co jest kolejnym zadaniem. Tym razem Twoim celem będzie napisanie gry Wąż. W tym celu będziesz musiała zastosować metodologię <a href="https://pl.wikipedia.org/wiki/Programowanie_sterowane_zdarzeniami">programowania zdarzeniowego</a>—czyli w prostszych słowach: napiszesz kod, który umie zareagować na „zdarzenia” niezależne od niego—np. po naciśnięciu przez użytkownika danego klawisza wykona określoną czynność.</p>
 <h2 id="co-to-jest-wąż"><a href="#co-to-jest-wąż">Co to jest wąż?</a></h2>
 <p>Otóż wąż to jedna z najprostszych—a jednocześnie kiedyś najbardziej popularnych—gier komputerowych (nie wierzysz? zapytaj rodziców). W grze gracz steruje długim i cienkim stworzeniem (podobnym do węża), które porusza się po planszy, zbierając jedzenie. Wąż stara się NIE uderzyć własną głową o rozstawione na planszy przeszkody, a także o kawałek własnego ogona (w przeciwnym razie gra się kończy). Problem w tym, że im więcej wąż „zje”, tym szybciej się porusza, a także tym dłuższy robi się jego ogon, i tym trudniej nim sterować—zresztą <a href="http://mina86.github.io/dresscode-snake/demo/snake.html">przekonaj się sama</a> :-)</p>
 <p>W naszym przykładzie wężem steruje się za pomocą klawiszy strzałek (lewo, prawo).</p>
 <h2 id="co-będzie-ci-potrzebne"><a href="#co-będzie-ci-potrzebne">Co będzie Ci potrzebne</a></h2>
-<p>Swoją grę będziesz pisać w języku JavaScript i będziesz potrzebować solidnej znajomości jego podstaw. Dlatego, jeśli nie przerobiłaś przy okazji poprzednich zadań kursu JavaScript, zachęcamy Cię do zrobienia tego teraz. <strong>Zarezerwuj sobie na to co najmniej 5 godzin.</strong> Konkretne sekcje kursów, które Ci się przydadzą, wymieniliśmy na <a href="http://mina86.github.io/dresscode-sorting/">tej stronie</a>.</p>
+<p>Swoją grę będziesz pisać w języku JavaScript i będziesz potrzebować solidnej znajomości jego podstaw. Dlatego, jeśli nie przerobiłaś przy okazji poprzednich zadań kursu JavaScript, zachęcamy Cię do zrobienia tego teraz. Do tego zadania kursy najlepiej będzie przerobić w całości (a nie tylko wybrane sekcje). Jeśli znasz język angielski (na poziomie VI klasy szkoły podstawowej powinno wystarczyć), polecamy Ci kurs <a href="https://www.codecademy.com/learn/javascript">CodeCademy</a>. Jeśli wolisz kurs w języku polskim, polecamy kurs <a href="https://pl.khanacademy.org/computing/computer-programming/programming">Khan Academy</a>. Kurs jest dostępny po polsku—jeśli wyświetla Ci się po angielsku, poszukaj opcji zmiany języka! <strong>Kursy są obszerne, dlatego zarezerwuj sobie na to co najmniej 8 godzin.</strong></p>
+<p>Powinnaś też znać pojęcie: układ współrzędnych (a dokładnie—co to „współrzędna X” i „współrzędna Y”). Jeśli nie wiesz co to, nie martw się—<a href="https://pl.khanacademy.org/math/cc-sixth-grade-math/cc-6th-negative-number-topic/cc-6th-coordinate-plane/v/the-coordinate-plane">ten krótki film</a> wszystko Ci wyjaśni.</p>
+<p>Zwróć jednak uwagę, że w programowaniu, a więc także w naszej grze Wąż, układ współrzędnych jest obrócony do góry nogami. Punkt <code>(0, 0)</code> to lewy górny róg i współrzędne X rosną w prawo, a Y—w dół.</p>
 <h2 id="zadanie"><a href="#zadanie">Zadanie</a></h2>
 <p>Aby ułatwić Ci zadanie, przygotowaliśmy szkielet rozwiązania w postaci trzech plików. Pobierz na swój komputer następujące pliki:</p>
 <ul>
@@ -47,39 +51,39 @@
 <h3 id="snake.js"><a href="#snake.js"><code>snake.js</code></a></h3>
 <p><strong>Twoim zadaniem będzie uzupełnienie pliku</strong> <code>snake.js</code>. W tej chwili znajdziesz w nim definicje czterech funkcji, które będą pomagać wężowi „poruszać się”. W naszym pliku te funkcje są puste—napisanie ich treści należy do Ciebie.</p>
 <ul>
-<li><p>Funkcja <code>game.prepareBoard</code> (czyli po angielsku „przygotuj planszę”) będzie wykonywana na samym początku każdej gry. Jej celem jest przygotowanie planszy („wyzerowanie stanu gry”). Aby przygotować planszę, powinnaś ustawić i narysować na niej węża, jabłka oraz kamienie. Rysować możesz, korzystając z gotowych funkcji <code>game.draw...</code> opisanych poniżej.</p></li>
+<li><p>Funkcja <code>game.prepareBoard</code> (czyli po angielsku „przygotuj planszę”) będzie wykonywana na samym początku każdej gry. Jej celem jest przygotowanie planszy („wyzerowanie stanu gry”). Aby przygotować planszę, powinnaś ustawić i narysować na niej węża, jabłka oraz kamienie. Rysować możesz, korzystając z gotowych funkcji <code>game.draw…</code> opisanych poniżej.</p></li>
 <li><p>Funkcje <code>game.turnLeft</code> oraz <code>game.turnRight</code> (czyli po angielsku „skręć w lewo” i „skręć w prawo”) będą wykonywane za każdym razem, gdy gracz wciśnie przycisk skrętu (strzałkę) w lewo lub w prawo. Uwaga: samo wciśnięcie klawisza nie powoduje jeszcze ruchu węża.</p>
 <p>Funkcja <code>game.turnLeft</code> i <code>game.turnRight</code> powinna tylko „obrócić” głowę węża—narysować ją tak, by wskazywała w odpowiednią stronę.</p>
 <p>Dopiero funkcja <code>game.nextMove</code> (czyli „wykonaj następny ruch”) będzie poruszać węża.</p>
 <p><strong>Uwaga</strong>: Twoim zadaniem będzie napisać funkcje tak, aby troszkę ułatwić graczom grę, gdy będą naciskać klawisze bardzo szybko. Na przykład w przypadku szybkiego dwukrotnego skrętu w lewo wąż nie powinien „zawracać w miejscu”, ale najpierw skręcić o jedno „oczko” w lewo, i dopiero tam wykonać kolejny zakręt. Chodzi o to, aby wąż nie „zjadał” zbyt łatwo samego siebie.</p></li>
 <li><p>Funkcja <code>game.nextMove</code> (czyli „wykonaj następny ruch”) będzie wykonywana za każdym razem, kiedy ma nastąpić ruch węża. Funkcja powinna sprawdzać, czy w efekcie ruchu wąż uderza w kamień lub swoje własne ciało (co kończy grę), czy może zjada jabłko (co go wydłuża i zwiększa liczbę punktów).</p>
-<p>Aby zmienić wygląd planszy, powinnaś wołać funkcje <code>game.draw...</code> (czyli „narysuj ...”), które uaktualniają wygląd planszy.</p></li>
+<p>Aby zmienić wygląd planszy, powinnaś wołać funkcje <code>game.draw…</code> (czyli „narysuj …”), które uaktualniają wygląd planszy.</p></li>
 </ul>
 <h3 id="snake-framework.js"><a href="#snake-framework.js"><code>snake-framework.js</code></a></h3>
-<p>Pliku <code>snake-framework.js</code> nie musisz zmieniać—choć możesz oczywiście do niego zajrzeć, aby zobaczyć jak napisane są poszczególne funkcje. Ten plik zawiera funkcje i zmienne pomocne przy implementacji gry Wąż.</p>
-<p>TODO: Opis współrzędnych oraz faktu, że framework korzysta z obiektów z dwoma polami–x oraz y–do reprezentacji współrzędnej.</p>
+<p>Pliku <code>snake-framework.js</code> nie musisz zmieniać—choć możesz oczywiście do niego zajrzeć, aby zobaczyć jak działają poszczególne funkcje. Ten plik zawiera funkcje i zmienne pomocne przy pisaniu gry Wąż.</p>
+<p><strong>Uwaga</strong>: Plansza jest swoistym układem współrzędnych i aby narysować na niej głowę / ogon węża, kamień lub wyczyścić pole, musisz przekazać do odpowiedniej funkcji współrzędne x oraz y. Nasz kod reprezentuje taką parę współrzędnych jako <a href="https://pl.khanacademy.org/computing/computer-programming/programming/objects/p/intro-to-objects">pojedynczy obiekt</a> z właściwościami <code>x</code> oraz <code>y</code>. Poniżej zobaczysz przykłady, jak przekazywać ją do poszczególnych funkcji.</p>
 <ul>
-<li><p>Zmienne <code>WIDTH</code> i <code>HEIGHT</code> określają odpowiednie szerokość i wysokość planszy do gry. Należy pamiętać, że układ współrzędnych zaczyna się od punktu <code>(0, 0)</code> co oznacza, że możliwe współrzędne X są od zera do <code>WIDTH - 1</code> (włącznie), a Y—od zera do <code>HEIGHT - 1</code>.</p></li>
-<li><p>Funkcja <code>random</code> zwraca losową liczbę całkowita z podanego zakresu. Przykładowo, <code>random(0, 1)’ zwróci zero lub jeden,     a wywołanie</code>random(1, 6)` symuluje rzut kostką.</p></li>
-<li><p>Funkcja <code>randomPoint</code> zwraca losową współrzędna z planszy do gry.</p>
-<p>Przy wykorzystaniu tej funkcji do wyboru miejsca dla nowego jabłka lub kamienia, należy pamiętać, że losowa pozycja może być już zajęta przez jakiś obiekt na planszy. Czy to smaczne jabłko, złowieszczy kamień, czy w końcu samego węża.</p>
-<p>Przykładowo, wywołanie <code>randomPoint()</code> może zwrócić <code>{x: 11, y:23}</code>.</p></li>
-<li><p>Funkcja <code>game.setScore</code> przyjmuje jeden argument, który staje się nowym wynikiem gracza. Uaktualnia ona liczbę punktów wyświetlaną na stronie.</p>
-<p>Przykładowe wywołanie to <code>game.setScore(10)</code>, które ustawia liczbę punktów na 10.</p></li>
-<li><p>Funkcja <code>game.stopGame</code> kończy grę i wyświetla aktualny wynik. Powinna zostać wywołana wewnątrz <code>game.nextMove</code> jeżeli wąż „zderzy” się z kamieniem lub samym sobą.</p>
-<p>Funkcja nie przyjmuje argumentów, ani nie zwraca żadnej wartości, więc jej wywołanie to zwykłe <code>game.stopGame()</code>.</p></li>
-<li><p>Funkcje <code>game.drawApple</code>, <code>game.drawStone</code> i <code>game.drawGrass</code> rysują odpowiednio jabłko, kamień lub trawę na podanej współrzędnej.</p>
-<p>Ta ostatnia może służyć do „wyczyszczenia” pola, które było zajęte przez węża, jabłko lub kamień, ale obecnie jest puste.</p>
-<p>Funkcje te są potrzebne przy przygotowywaniu planszy poprzez <code>game.prepareBoard</code> oraz przy uaktualnianiu planszy wewnątrz <code>game.nextMove</code>.</p>
-<p>Przykładowo, sekwencja:</p>
+<li><p>Zmienne <code>WIDTH</code> i <code>HEIGHT</code> określają odpowiednio szerokość i wysokość planszy do gry. Należy pamiętać, że układ współrzędnych zaczyna się od punktu <code>(0, 0)</code>—co oznacza, że możliwe współrzędne X są od zera do <code>WIDTH - 1</code> (włącznie), a Y—od zera do <code>HEIGHT - 1</code>.</p></li>
+<li><p>Funkcja <code>random</code> (po angielsku: „losowy”, „wylosowany”) zwraca losową liczbę całkowitą z podanego zakresu. Przykładowo, <code>random(0, 1)</code> zwróci zero lub jeden, a wywołanie <code>random(1, 6)</code> symuluje rzut kostką.</p></li>
+<li><p>Funkcja <code>randomPoint</code> (po angielsku: „losowy punkt”) zwraca losowe miejsce (losową parę współrzędnych x i y) z planszy do gry.</p>
+<p>Przy wykorzystaniu tej funkcji do wyboru miejsca dla nowego jabłka lub kamienia, należy pamiętać, że wylosowane pole może być już zajęte przez jakiś obiekt na planszy. Czy przez to smaczne jabłko, złowieszczy kamień, czy w końcu samego węża.</p>
+<p>Przykładowo, wywołanie funkcji <code>randomPoint()</code> może zwrócić wynik w postaci <code>{ x: 11, y: 23 }</code>.</p></li>
+<li><p>Funkcja <code>game.setScore</code> (po angielsku „ustaw nowy wynik gracza”) przyjmuje jeden argument, który staje się nowym wynikiem gracza. Funkcja uaktualnia liczbę punktów wyświetlaną na stronie.</p>
+<p>Przykładowe użycie tej funkcji wygląda tak: <code>game.setScore(10)</code>—w ten sposób ustawimy liczbę punktów na 10.</p></li>
+<li><p>Funkcja <code>game.stopGame</code> (po angielsku „zatrzymaj grę”) kończy grę i wyświetla aktualny wynik. Ta funkcja powinna zostać użyta wewnątrz <code>game.nextMove</code>, gdy wąż „zderzy” się z kamieniem lub samym sobą.</p>
+<p>Ta funkcja nie przyjmuje argumentów, ani nie zwraca żadnej wartości, więc aby jej użyć, należy po prostu napisać <code>game.stopGame()</code>.</p></li>
+<li><p>Funkcje <code>game.drawApple</code> (po angielsku „narysuj jabłko”), <code>game.drawStone</code> („narysuj kamień”) i <code>game.drawGrass</code> („narysuj trawę”) rysują odpowiednio jabłko, kamień lub trawę w miejscu o podanych współrzędnych.</p>
+<p>Funkcja <code>game.drawGrass</code> może służyć do „wyczyszczenia” pola, które było zajęte przez węża, jabłko lub kamień, ale obecnie jest puste.</p>
+<p>Wszystkie te funkcje będą Ci są potrzebne przy przygotowywaniu planszy (w Twojej funkcji <code>game.prepareBoard</code>), a także przy uaktualnianiu wyglądu planszy (wewnątrz Twojej funkcji <code>game.nextMove</code>).</p>
+<p>Przykładowo, poniższy kod:</p>
 <pre><code>game.drawApple({ x: 0, y: 0 });
 game.drawApple({ x: 10, y: 10 });
-game.drawStone({ x: 0, y: HEIGHT - 1});
-game.drawStone({ x: WIDTH - 1, y: HEIGHT - 1});</code></pre>
-<p>Narysuje jabłko w lewym górnym rogu oraz na pozycji punkcie <code>(10, 10)</code>, a także kamień w lewym dolnym i prawym dolnym rogu.</p></li>
-<li><p>Funkcje <code>game.drawSnakeHead</code>, <code>game.drawSnakeBody</code> oraz <code>game.drawSnakeTail</code> rysują poszczególne części węża–głowę, fragment ciała oraz ogon.</p>
-<p>Przyjmują one dwa argumenty. Pierwszy określa pozycję danego fragmentu węża, a drugi jego kształt. Ponieważ wąż wije się w różnych kierunkach, jego ciało może przyjmować kształt różnych wygibasów.</p>
-<p>Kształt ten jest określany poprzez jedną z poniższych wartości:</p>
+game.drawStone({ x: 0, y: HEIGHT - 1 });
+game.drawStone({ x: WIDTH - 1, y: HEIGHT - 1 });</code></pre>
+<p>narysuje jabłko w lewym górnym rogu planszy, kolejne jabłko w punkcie <code>(10, 10)</code>, a następnie kamień w lewym dolnym i prawym dolnym rogu planszy.</p></li>
+<li><p>Funkcje <code>game.drawSnakeHead</code> (po angielsku „narysuj głowę węża”), <code>game.drawSnakeBody</code> („narysuj ciało węża”) oraz <code>game.drawSnakeTail</code> („narysuj ogon węża”) rysują poszczególne części węża: głowę, fragment ciała oraz ogon.</p>
+<p>Każda z tych funkcji przyjmuje po dwa argumenty. Pierwszy argument określa pozycję danego fragmentu węża (w postaci współrzędnych x i y), a drugi argument—jego kształt. Ponieważ wąż wije się w różnych kierunkach, jego ciało może przyjmować kształt różnych wygibasów.</p>
+<p>Kształt ten będziesz określać przez jedną z poniższych wartości:</p>
 <ul>
 <li><code>Direction.LEFT_FROM_RIGHT</code> lub <code>Direction.LEFT</code>—wąż porusza się z prawej na lewą stronę: ←</li>
 <li><code>Direction.RIGHT_FROM_LEFT</code> lub <code>Direction.RIGHT</code>—wąż porusza się z lewej na prawą stronę: →</li>
@@ -94,7 +98,7 @@ game.drawStone({ x: WIDTH - 1, y: HEIGHT - 1});</code></pre>
 <li><code>Direction.UP_FROM_RIGHT</code>— porusza się z lewej w górę: ⬑</li>
 <li><code>Direction.DOWN_FROM_RIGHT</code>— porusza się z lewej w dół: ⬐</li>
 </ul>
-<p>Przykładowo, sekwencja:</p>
+<p>Przykładowo, taki kod:</p>
 <pre><code>game.drawSnakeHead({ x: 10, y: 10 }, Direction.UP_FROM_DOWN);
 game.drawSnakeBody({ x: 10, y: 11 }, Direction.UP_FROM_RIGHT);
 game.drawSnakeBody({ x: 11, y: 11 }, Direction.LEFT_FROM_RIGHT);
@@ -108,7 +112,18 @@ game.drawSnakeTail({ x: 13, y: 13 }, Direction.UP_FROM_DOWN);</code></pre>
 </figure></li>
 </ul>
 <h3 id="snake.html"><a href="#snake.html"><code>snake.html</code></a></h3>
-<p>Plik <code>snake.html</code> to prosty dokument HTML, który definiuje przestrzeń, na której rysowana będzie plansza do gry i ruchy węża, a także element, w którym wyświetlany będzie aktualny wynik gry.</p>
+<p>Plik <code>snake.html</code> to dokument HTML, który definiuje przestrzeń, na której rysowana będzie plansza do gry i ruchy węża, a także element, w którym wyświetlany będzie aktualny wynik gry. Nie musisz go zmieniać.</p>
+<h2 id="wskazówki"><a href="#wskazówki">Wskazówki</a></h2>
+<p>Na początku zadanie może wydawać się skomplikowane i dlatego warto je podzielić na małe kroki, które będą Cię zbliżać do rozwiązania i ostatecznej wersji gry. Poniżej jest kilka proponowanych przez nas wskazówek, które możesz zastosować:</p>
+<ul>
+<li><p>Zacznij od eksperymentowania z funkcjami rysującymi obiekty wywołując je z funkcji <code>game.prepareBoard</code>. Pozwoli Ci to zapoznać się ze sposobem manipulacji planszą bez konieczności przejmowania się ruchem węża.</p></li>
+<li><p>Wraz z kolejnymi zjedzonymi jabłkami, wąż się wydłuża. Niemniej, aby nie musieć myśleć o całym ogonie węża, warto zacząć bez wydłużającego się ciała węża.</p></li>
+<li><p>W końcowej wersji powinny być zarówno jabłka, którymi wąż będzie się żywił, jak i kamienie, które będą kończyć grę, ale warto zacząć bez kamieni i dodać je dopiero później.</p></li>
+</ul>
+<h2 id="wszystko-jasne"><a href="#wszystko-jasne">Wszystko jasne?</a></h2>
+<p>Jeśli masz jakieś wątpliwości, chcesz się dowiedzieć więcej o tym, jak działa kod, albo po prostu przydałaby Ci się podpowiedź w jakimś fragmencie zadania, to pamiętaj, że chętnie Ci pomożemy. Czekamy na Twoje pytania na naszym forum <a href="https://plus.google.com/u/0/communities/116917969489436061702">WebMuses Youth</a>, a także pod adresem mailowym dresscode-pl@google.com</p>
+<p><strong>Powodzenia, trzymamy za Ciebie kciuki!</strong></p>
+<p>zespół DressCode</p>
 </main>
 </body>
 </html>
