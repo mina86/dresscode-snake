@@ -54,6 +54,10 @@ się—[ten krótki
 film](https://pl.khanacademy.org/math/cc-sixth-grade-math/cc-6th-negative-number-topic/cc-6th-coordinate-plane/v/the-coordinate-plane)
 wszystko Ci wyjaśni.
 
+Zwróć jednak uwagę, że w programowaniu, a więc także w naszej grze
+Wąż, układ współrzędnych jest obrócony do góry nogami.  Punkt `(0, 0)`
+to lewy górny róg i współrzędne X rosną w prawo, a Y—w dół.
+
 ## Zadanie
 
 Aby ułatwić Ci zadanie, przygotowaliśmy szkielet rozwiązania w postaci
@@ -110,10 +114,13 @@ Pliku `snake-framework.js` nie musisz zmieniać—choć możesz oczywiście
 do niego zajrzeć, aby zobaczyć jak działają poszczególne funkcje.  Ten
 plik zawiera funkcje i zmienne pomocne przy pisaniu gry Wąż.
 
-**Uwaga:** Nasz kod traktuje planszę jako układ współrzędnych—dlatego
-aby narysować na niej głowę / ogon węża, kamień, lub wyczyścić pole,
-powinnaś przekazać do odpowiedniej funkcji współrzędne x i y do odpowiedniej
-czynności. Poniżej zobaczysz przykłady, jak to robić.
+**Uwaga**: Plansza jest swoistym układem współrzędnych i aby narysować
+na niej głowę / ogon węża, kamień lub wyczyścić pole, musisz przekazać
+do odpowiedniej funkcji współrzędne x oraz y.  Nasz kod reprezentuje
+taką parę współrzędnych jako [pojedynczy
+obiekt](https://pl.khanacademy.org/computing/computer-programming/programming/objects/p/intro-to-objects)
+z właściwościami `x` oraz `y`.  Poniżej zobaczysz przykłady, jak
+przekazywać ją do poszczególnych funkcji.
 
  *  Zmienne `WIDTH` i `HEIGHT` określają odpowiednio szerokość
     i wysokość planszy do gry.  Należy pamiętać, że układ
