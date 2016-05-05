@@ -192,32 +192,32 @@ przekazywać ją do poszczególnych funkcji.
 
     Kształt ten będziesz określać przez jedną z poniższych wartości:
 
-     *  `Direction.LEFT_FROM_RIGHT` lub `Direction.LEFT`—wąż porusza
-        się z prawej na lewą stronę: ←
-     *  `Direction.RIGHT_FROM_LEFT` lub `Direction.RIGHT`—wąż porusza
-        się z lewej na prawą stronę: →
-     *  `Direction.UP_FROM_DOWN` lub `Direction.UP`—wąż porusza się
-        z dołu na górę: ↑
-     *  `Direction.DOWN_FROM_UP` lub `Direction.DOWN`—wąż porusza się
-        z góry na dół: ↓
-     *  `Direction.LEFT_FROM_DOWN`—wąż porusza się z dołu w lewo: ↰
-     *  `Direction.LEFT_FROM_UP`— porusza się z góry w lewo: ↲
-     *  `Direction.RIGHT_FROM_DOWN`— porusza się z dołu w prawo: ↱
-     *  `Direction.RIGHT_FROM_UP`— porusza się z góry w prawo: ↳
-     *  `Direction.UP_FROM_LEFT`— porusza się z lewej w górę: ⬏
-     *  `Direction.DOWN_FROM_LEFT`— porusza się z lewej w dół: ⬎
-     *  `Direction.UP_FROM_RIGHT`— porusza się z lewej w górę: ⬑
-     *  `Direction.DOWN_FROM_RIGHT`— porusza się z lewej w dół: ⬐
+     *  `Shape.LEFT_FROM_RIGHT` lub `Shape.LEFT`—wąż porusza się
+        z prawej na lewą stronę: ←
+     *  `Shape.RIGHT_FROM_LEFT` lub `Shape.RIGHT`—wąż porusza się
+        z lewej na prawą stronę: →
+     *  `Shape.UP_FROM_DOWN` lub `Shape.UP`—wąż porusza się z dołu na
+        górę: ↑
+     *  `Shape.DOWN_FROM_UP` lub `Shape.DOWN`—wąż porusza się z góry
+        na dół: ↓
+     *  `Shape.LEFT_FROM_DOWN`—wąż porusza się z dołu w lewo: ↰
+     *  `Shape.LEFT_FROM_UP`— porusza się z góry w lewo: ↲
+     *  `Shape.RIGHT_FROM_DOWN`— porusza się z dołu w prawo: ↱
+     *  `Shape.RIGHT_FROM_UP`— porusza się z góry w prawo: ↳
+     *  `Shape.UP_FROM_LEFT`— porusza się z lewej w górę: ⬏
+     *  `Shape.DOWN_FROM_LEFT`— porusza się z lewej w dół: ⬎
+     *  `Shape.UP_FROM_RIGHT`— porusza się z lewej w górę: ⬑
+     *  `Shape.DOWN_FROM_RIGHT`— porusza się z lewej w dół: ⬐
 
     Przykładowo, taki kod:
 
-        game.drawSnakeHead({ x: 10, y: 10 }, Direction.UP_FROM_DOWN);
-        game.drawSnakeBody({ x: 10, y: 11 }, Direction.UP_FROM_RIGHT);
-        game.drawSnakeBody({ x: 11, y: 11 }, Direction.LEFT_FROM_RIGHT);
-        game.drawSnakeBody({ x: 12, y: 11 }, Direction.LEFT_FROM_RIGHT);
-        game.drawSnakeBody({ x: 13, y: 11 }, Direction.LEFT_FROM_DOWN);
-        game.drawSnakeBody({ x: 13, y: 12 }, Direction.UP_FROM_DOWN);
-        game.drawSnakeTail({ x: 13, y: 13 }, Direction.UP_FROM_DOWN);
+        game.drawSnakeHead({ x: 10, y: 10 }, Shape.UP_FROM_DOWN);
+        game.drawSnakeBody({ x: 10, y: 11 }, Shape.UP_FROM_RIGHT);
+        game.drawSnakeBody({ x: 11, y: 11 }, Shape.LEFT_FROM_RIGHT);
+        game.drawSnakeBody({ x: 12, y: 11 }, Shape.LEFT_FROM_RIGHT);
+        game.drawSnakeBody({ x: 13, y: 11 }, Shape.LEFT_FROM_DOWN);
+        game.drawSnakeBody({ x: 13, y: 12 }, Shape.UP_FROM_DOWN);
+        game.drawSnakeTail({ x: 13, y: 13 }, Shape.UP_FROM_DOWN);
 
     Narysuje węża w kształcie pokazanym na poniższym obrazku:
 
