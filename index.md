@@ -230,6 +230,26 @@ na której rysowana będzie plansza do gry i ruchy węża, a także
 element, w którym wyświetlany będzie aktualny wynik gry.
 Nie musisz go zmieniać.
 
+## Wskazówki
+
+Na początku zadanie może wydawać się skomplikowane i dlatego warto je
+podzielić na małe kroki, które będą Cię zbliżać do rozwiązania
+i ostatecznej wersji gry.  Poniżej jest kilka proponowanych przez nas
+wskazówek, które możesz zastosować:
+
+ *  Zacznij od eksperymentowania z funkcjami rysującymi obiekty
+    wywołując je z funkcji `game.prepareBoard`.  Pozwoli Ci to
+    zapoznać się ze sposobem manipulacji planszą bez konieczności
+    przejmowania się ruchem węża.
+
+ *  Wraz z kolejnymi zjedzonymi jabłkami, wąż się wydłuża.  Niemniej,
+    aby nie musieć myśleć o całym ogonie węża, warto zacząć bez
+    wydłużającego się ciała węża.
+
+ *  W końcowej wersji powinny być zarówno jabłka, którymi wąż będzie
+    się żywił, jak i kamienie, które będą kończyć grę, ale warto
+    zacząć bez kamieni i dodać je dopiero później.
+
 ## Wszystko jasne?
 
 Jeśli masz jakieś wątpliwości, chcesz się dowiedzieć więcej o tym, jak
