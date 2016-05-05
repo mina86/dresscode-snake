@@ -14,7 +14,7 @@ celem będzie napisanie gry Wąż.  W tym celu będziesz musiała
 zastosować metodologię [programowania
 zdarzeniowego](https://pl.wikipedia.org/wiki/Programowanie_sterowane_zdarzeniami)—czyli
 w prostszych słowach: napiszesz kod, który umie zareagować na
-"zdarzenia" niezależne od niego—np. po naciśnięciu przez użytkownika
+„zdarzenia” niezależne od niego—np. po naciśnięciu przez użytkownika
 danego klawisza wykona określoną czynność.
 
 ## Co to jest wąż?
@@ -38,18 +38,21 @@ W naszym przykładzie wężem steruje się za pomocą klawiszy strzałek
 Swoją grę będziesz pisać w języku JavaScript i będziesz potrzebować
 solidnej znajomości jego podstaw.  Dlatego, jeśli nie przerobiłaś przy
 okazji poprzednich zadań kursu JavaScript, zachęcamy Cię do zrobienia
-tego teraz. Do tego zadania kursy najlepiej będzie przerobić w całości
-(a nie tylko wybrane sekcje).
-Jeśli znasz język angielski (na poziomie VI klasy szkoły podstawowej
-powinno wystarczyć), polecamy Ci kurs [CodeCademy](https://www.codecademy.com/learn/javascript).
-Jeśli wolisz kurs w języku polskim, polecamy kurs [Khan Academy](https://pl.khanacademy.org/computing/computer-programming/programming).
-Kurs jest dostępny po polsku - jeśli wyświetla Ci się po angielsku, poszukaj
-opcji zmiany języka!
+tego teraz.  Do tego zadania kursy najlepiej będzie przerobić
+w całości (a nie tylko wybrane sekcje).  Jeśli znasz język angielski
+(na poziomie VI klasy szkoły podstawowej powinno wystarczyć), polecamy
+Ci kurs [CodeCademy](https://www.codecademy.com/learn/javascript).
+Jeśli wolisz kurs w języku polskim, polecamy kurs [Khan
+Academy](https://pl.khanacademy.org/computing/computer-programming/programming).
+Kurs jest dostępny po polsku—jeśli wyświetla Ci się po angielsku,
+poszukaj opcji zmiany języka!
 **Kursy są obszerne, dlatego zarezerwuj sobie na to co najmniej 8 godzin.**
 
-Powinnaś też znać pojęcie: układ współrzędnych (a dokładnie - co to znaczy
-"współrzędna X" i "współrzędna Y"). Jeśli nie wiesz co to, nie martw się -
-[ten krótki film](https://pl.khanacademy.org/math/cc-sixth-grade-math/cc-6th-negative-number-topic/cc-6th-coordinate-plane/v/the-coordinate-plane) wszystko Ci wyjaśni.
+Powinnaś też znać pojęcie: układ współrzędnych (a dokładnie—co to
+„współrzędna X” i „współrzędna Y”).  Jeśli nie wiesz co to, nie martw
+się—[ten krótki
+film](https://pl.khanacademy.org/math/cc-sixth-grade-math/cc-6th-negative-number-topic/cc-6th-coordinate-plane/v/the-coordinate-plane)
+wszystko Ci wyjaśni.
 
 ## Zadanie
 
@@ -72,7 +75,7 @@ treści należy do Ciebie.
     celem jest przygotowanie planszy („wyzerowanie stanu gry”).  Aby
     przygotować planszę, powinnaś ustawić i narysować na niej węża,
     jabłka oraz kamienie.  Rysować możesz, korzystając z gotowych
-    funkcji `game.draw...` opisanych poniżej.
+    funkcji `game.draw…` opisanych poniżej.
 
  *  Funkcje `game.turnLeft` oraz `game.turnRight` (czyli po angielsku
     „skręć w lewo” i „skręć w prawo”) będą wykonywane za każdym razem,
@@ -98,32 +101,32 @@ treści należy do Ciebie.
     swoje własne ciało (co kończy grę), czy może zjada jabłko (co go
     wydłuża i zwiększa liczbę punktów).
 
-    Aby zmienić wygląd planszy, powinnaś wołać funkcje `game.draw...`
-    (czyli „narysuj ...”), które uaktualniają wygląd planszy.
-
+    Aby zmienić wygląd planszy, powinnaś wołać funkcje `game.draw…`
+    (czyli „narysuj …”), które uaktualniają wygląd planszy.
 
 ### `snake-framework.js`
 
 Pliku `snake-framework.js` nie musisz zmieniać—choć możesz oczywiście
-do niego zajrzeć, aby zobaczyć jak napisane są poszczególne funkcje.
-Ten plik zawiera funkcje i zmienne pomocne przy pisaniu gry Wąż.
+do niego zajrzeć, aby zobaczyć jak działają poszczególne funkcje.  Ten
+plik zawiera funkcje i zmienne pomocne przy pisaniu gry Wąż.
 
-**Uwaga:** Nasz kod traktuje planszę jako układ współrzędnych - dlatego
+**Uwaga:** Nasz kod traktuje planszę jako układ współrzędnych—dlatego
 aby narysować na niej głowę / ogon węża, kamień, lub wyczyścić pole,
 powinnaś przekazać do odpowiedniej funkcji współrzędne x i y do odpowiedniej
 czynności. Poniżej zobaczysz przykłady, jak to robić.
 
  *  Zmienne `WIDTH` i `HEIGHT` określają odpowiednio szerokość
     i wysokość planszy do gry.  Należy pamiętać, że układ
-    współrzędnych zaczyna się od punktu `(0, 0)` - co oznacza, że
+    współrzędnych zaczyna się od punktu `(0, 0)`—co oznacza, że
     możliwe współrzędne X są od zera do `WIDTH - 1` (włącznie),
-    a Y - od zera do `HEIGHT - 1`.
+    a Y—od zera do `HEIGHT - 1`.
 
- *  Funkcja `random` (po angielsku: "losowy", "wylosowany") zwraca
-    losową liczbę całkowitą z podanego zakresu.  Przykładowo, `random(0, 1)` zwróci zero
-    lub jeden, a wywołanie `random(1, 6)` symuluje rzut kostką.
+ *  Funkcja `random` (po angielsku: „losowy”, „wylosowany”) zwraca
+    losową liczbę całkowitą z podanego zakresu.  Przykładowo,
+    `random(0, 1)` zwróci zero lub jeden, a wywołanie `random(1, 6)`
+    symuluje rzut kostką.
 
- *  Funkcja `randomPoint` (po angielsku: "losowy punkt") zwraca losowe
+ *  Funkcja `randomPoint` (po angielsku: „losowy punkt”) zwraca losowe
     miejsce (losową parę współrzędnych x i y) z planszy do gry.
 
     Przy wykorzystaniu tej funkcji do wyboru miejsca dla nowego jabłka
@@ -132,28 +135,29 @@ czynności. Poniżej zobaczysz przykłady, jak to robić.
     złowieszczy kamień, czy w końcu samego węża.
 
     Przykładowo, wywołanie funkcji `randomPoint()` może zwrócić wynik
-    w postaci `{x: 11, y:23}`.
+    w postaci `{ x: 11, y: 23 }`.
 
- *  Funkcja `game.setScore` (po angielsku "ustaw nowy wynik gracza")
+ *  Funkcja `game.setScore` (po angielsku „ustaw nowy wynik gracza”)
     przyjmuje jeden argument, który staje się nowym wynikiem gracza.
     Funkcja uaktualnia liczbę punktów wyświetlaną na stronie.
 
-    Przykładowe użycie tej funkcji wygląda tak: `game.setScore(10)` - w ten
+    Przykładowe użycie tej funkcji wygląda tak: `game.setScore(10)`—w ten
     sposób ustawimy liczbę punktów na 10.
 
- *  Funkcja `game.stopGame` (po angielsku "zatrzymaj grę") kończy grę
+ *  Funkcja `game.stopGame` (po angielsku „zatrzymaj grę”) kończy grę
     i wyświetla aktualny wynik.  Ta funkcja powinna zostać użyta
     wewnątrz `game.nextMove`, gdy wąż „zderzy” się z kamieniem lub samym sobą.
 
     Ta funkcja nie przyjmuje argumentów, ani nie zwraca żadnej wartości,
     więc aby jej użyć, należy po prostu napisać `game.stopGame()`.
 
- *  Funkcje `game.drawApple` (po angielsku "narysuj jabłko"), `game.drawStone`
-    ("narysuj kamień") i `game.drawGrass` ("narysuj trawę") rysują odpowiednio
+ *  Funkcje `game.drawApple` (po angielsku „narysuj jabłko”), `game.drawStone`
+    („narysuj kamień”) i `game.drawGrass` („narysuj trawę”) rysują odpowiednio
     jabłko, kamień lub trawę w miejscu o podanych współrzędnych.
 
-    Funkcja `game.drawGrass` może służyć do „wyczyszczenia” pola, które było zajęte
-    przez węża, jabłko lub kamień, ale obecnie jest puste.
+    Funkcja `game.drawGrass` może służyć do „wyczyszczenia” pola,
+    które było zajęte przez węża, jabłko lub kamień, ale obecnie jest
+    puste.
 
     Wszystkie te funkcje będą Ci są potrzebne przy przygotowywaniu planszy
     (w Twojej funkcji `game.prepareBoard`), a także przy uaktualnianiu
@@ -161,22 +165,22 @@ czynności. Poniżej zobaczysz przykłady, jak to robić.
 
     Przykładowo, poniższy kod:
 
-        `game.drawApple({ x: 0, y: 0 });`
-        `game.drawApple({ x: 10, y: 10 });`
-        `game.drawStone({ x: 0, y: HEIGHT - 1});`
-        `game.drawStone({ x: WIDTH - 1, y: HEIGHT - 1});`
+        game.drawApple({ x: 0, y: 0 });
+        game.drawApple({ x: 10, y: 10 });
+        game.drawStone({ x: 0, y: HEIGHT - 1 });
+        game.drawStone({ x: WIDTH - 1, y: HEIGHT - 1 });
 
     narysuje jabłko w lewym górnym rogu planszy, kolejne jabłko w punkcie
     `(10, 10)`, a następnie kamień w lewym dolnym i prawym dolnym rogu planszy.
 
- *  Funkcje `game.drawSnakeHead` (po angielsku "narysuj głowę węża"),
-    `game.drawSnakeBody` ("narysuj ciało węża") oraz `game.drawSnakeTail`
-    ("narysuj ogon węża") rysują poszczególne części węża: głowę,
+ *  Funkcje `game.drawSnakeHead` (po angielsku „narysuj głowę węża”),
+    `game.drawSnakeBody` („narysuj ciało węża”) oraz `game.drawSnakeTail`
+    („narysuj ogon węża”) rysują poszczególne części węża: głowę,
     fragment ciała oraz ogon.
 
     Każda z tych funkcji przyjmuje po dwa argumenty.  Pierwszy argument
     określa pozycję danego fragmentu węża (w postaci współrzędnych x i y),
-    a drugi argument - jego kształt.  Ponieważ wąż wije się w różnych kierunkach,
+    a drugi argument—jego kształt.  Ponieważ wąż wije się w różnych kierunkach,
     jego ciało może przyjmować kształt różnych wygibasów.
 
     Kształt ten będziesz określać przez jedną z poniższych wartości:
@@ -219,7 +223,7 @@ na której rysowana będzie plansza do gry i ruchy węża, a także
 element, w którym wyświetlany będzie aktualny wynik gry.
 Nie musisz go zmieniać.
 
-### Wszystko jasne?
+## Wszystko jasne?
 
 Jeśli masz jakieś wątpliwości, chcesz się dowiedzieć więcej o tym, jak
 działa kod, albo po prostu przydałaby Ci się podpowiedź w jakimś fragmencie zadania,
