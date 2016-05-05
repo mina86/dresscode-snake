@@ -38,9 +38,18 @@ W naszym przykładzie wężem steruje się za pomocą klawiszy strzałek
 Swoją grę będziesz pisać w języku JavaScript i będziesz potrzebować
 solidnej znajomości jego podstaw.  Dlatego, jeśli nie przerobiłaś przy
 okazji poprzednich zadań kursu JavaScript, zachęcamy Cię do zrobienia
-tego teraz.  **Zarezerwuj sobie na to co najmniej 5 godzin.**
-Konkretne sekcje kursów, które Ci się przydadzą, wymieniliśmy na [tej
-stronie](http://mina86.github.io/dresscode-sorting/).
+tego teraz. Do tego zadania kursy najlepiej będzie przerobić w całości
+(a nie tylko wybrane sekcje).
+Jeśli znasz język angielski (na poziomie VI klasy szkoły podstawowej
+powinno wystarczyć), polecamy Ci kurs [CodeCademy](https://www.codecademy.com/learn/javascript).
+Jeśli wolisz kurs w języku polskim, polecamy kurs [Khan Academy](https://pl.khanacademy.org/computing/computer-programming/programming).
+Kurs jest dostępny po polsku - jeśli wyświetla Ci się po angielsku, poszukaj
+opcji zmiany języka!
+**Kursy są obszerne, dlatego zarezerwuj sobie na to co najmniej 8 godzin.**
+
+Powinnaś też znać pojęcie: układ współrzędnych (a dokładnie - co to znaczy
+"współrzędna X" i "współrzędna Y"). Jeśli nie wiesz co to, nie martw się -
+[ten krótki film](https://pl.khanacademy.org/math/cc-sixth-grade-math/cc-6th-negative-number-topic/cc-6th-coordinate-plane/v/the-coordinate-plane) wszystko Ci wyjaśni.
 
 ## Zadanie
 
@@ -97,76 +106,80 @@ treści należy do Ciebie.
 
 Pliku `snake-framework.js` nie musisz zmieniać—choć możesz oczywiście
 do niego zajrzeć, aby zobaczyć jak napisane są poszczególne funkcje.
-Ten plik zawiera funkcje i zmienne pomocne przy implementacji gry Wąż.
+Ten plik zawiera funkcje i zmienne pomocne przy pisaniu gry Wąż.
 
-TODO: Opis współrzędnych oraz faktu, że framework korzysta z obiektów
-      z dwoma polami–x oraz y–do reprezentacji współrzędnej.
+**Uwaga:** Nasz kod traktuje planszę jako układ współrzędnych - dlatego
+aby narysować na niej głowę / ogon węża, kamień, lub wyczyścić pole,
+powinnaś przekazać do odpowiedniej funkcji współrzędne x i y do odpowiedniej
+czynności. Poniżej zobaczysz przykłady, jak to robić.
 
- *  Zmienne `WIDTH` i `HEIGHT` określają odpowiednie szerokość
+ *  Zmienne `WIDTH` i `HEIGHT` określają odpowiednio szerokość
     i wysokość planszy do gry.  Należy pamiętać, że układ
-    współrzędnych zaczyna się od punktu `(0, 0)` co oznacza, że
-    możliwe współrzędne X są od zera do `WIDTH - 1` (włącznie), a Y—od
-    zera do `HEIGHT - 1`.
+    współrzędnych zaczyna się od punktu `(0, 0)` - co oznacza, że
+    możliwe współrzędne X są od zera do `WIDTH - 1` (włącznie),
+    a Y - od zera do `HEIGHT - 1`.
 
- *  Funkcja `random` zwraca losową liczbę całkowita z podanego
-    zakresu.  Przykładowo, `random(0, 1)’ zwróci zero lub jeden,
-    a wywołanie `random(1, 6)` symuluje rzut kostką.
+ *  Funkcja `random` (po angielsku: "losowy", "wylosowany") zwraca
+    losową liczbę całkowitą z podanego zakresu.  Przykładowo, `random(0, 1)` zwróci zero
+    lub jeden, a wywołanie `random(1, 6)` symuluje rzut kostką.
 
- *  Funkcja `randomPoint` zwraca losową współrzędna z planszy do gry.
+ *  Funkcja `randomPoint` (po angielsku: "losowy punkt") zwraca losowe
+    miejsce (losową parę współrzędnych x i y) z planszy do gry.
 
     Przy wykorzystaniu tej funkcji do wyboru miejsca dla nowego jabłka
-    lub kamienia, należy pamiętać, że losowa pozycja może być już
-    zajęta przez jakiś obiekt na planszy.  Czy to smaczne jabłko,
+    lub kamienia, należy pamiętać, że wylosowane pole może być już
+    zajęte przez jakiś obiekt na planszy.  Czy przez to smaczne jabłko,
     złowieszczy kamień, czy w końcu samego węża.
 
-    Przykładowo, wywołanie `randomPoint()` może zwrócić `{x: 11,
-    y:23}`.
+    Przykładowo, wywołanie funkcji `randomPoint()` może zwrócić wynik
+    w postaci `{x: 11, y:23}`.
 
- *  Funkcja `game.setScore` przyjmuje jeden argument, który staje się
-    nowym wynikiem gracza.  Uaktualnia ona liczbę punktów wyświetlaną
-    na stronie.
+ *  Funkcja `game.setScore` (po angielsku "ustaw nowy wynik gracza")
+    przyjmuje jeden argument, który staje się nowym wynikiem gracza.
+    Funkcja uaktualnia liczbę punktów wyświetlaną na stronie.
 
-    Przykładowe wywołanie to `game.setScore(10)`, które ustawia liczbę
-    punktów na 10.
+    Przykładowe użycie tej funkcji wygląda tak: `game.setScore(10)` - w ten
+    sposób ustawimy liczbę punktów na 10.
 
- *  Funkcja `game.stopGame` kończy grę i wyświetla aktualny wynik.
-    Powinna zostać wywołana wewnątrz `game.nextMove` jeżeli wąż
-    „zderzy” się z kamieniem lub samym sobą.
+ *  Funkcja `game.stopGame` (po angielsku "zatrzymaj grę") kończy grę
+    i wyświetla aktualny wynik.  Ta funkcja powinna zostać użyta
+    wewnątrz `game.nextMove`, gdy wąż „zderzy” się z kamieniem lub samym sobą.
 
-    Funkcja nie przyjmuje argumentów, ani nie zwraca żadnej wartości,
-    więc jej wywołanie to zwykłe `game.stopGame()`.
+    Ta funkcja nie przyjmuje argumentów, ani nie zwraca żadnej wartości,
+    więc aby jej użyć, należy po prostu napisać `game.stopGame()`.
 
- *  Funkcje `game.drawApple`, `game.drawStone` i `game.drawGrass`
-    rysują odpowiednio jabłko, kamień lub trawę na podanej
-    współrzędnej.
+ *  Funkcje `game.drawApple` (po angielsku "narysuj jabłko"), `game.drawStone`
+    ("narysuj kamień") i `game.drawGrass` ("narysuj trawę") rysują odpowiednio
+    jabłko, kamień lub trawę w miejscu o podanych współrzędnych.
 
-    Ta ostatnia może służyć do „wyczyszczenia” pola, które było zajęte
+    Funkcja `game.drawGrass` może służyć do „wyczyszczenia” pola, które było zajęte
     przez węża, jabłko lub kamień, ale obecnie jest puste.
 
-    Funkcje te są potrzebne przy przygotowywaniu planszy poprzez
-    `game.prepareBoard` oraz przy uaktualnianiu planszy wewnątrz
-    `game.nextMove`.
+    Wszystkie te funkcje będą Ci są potrzebne przy przygotowywaniu planszy
+    (w Twojej funkcji `game.prepareBoard`), a także przy uaktualnianiu
+    wyglądu planszy (wewnątrz Twojej funkcji `game.nextMove`).
 
-    Przykładowo, sekwencja:
+    Przykładowo, poniższy kod:
 
-        game.drawApple({ x: 0, y: 0 });
-        game.drawApple({ x: 10, y: 10 });
-        game.drawStone({ x: 0, y: HEIGHT - 1});
-        game.drawStone({ x: WIDTH - 1, y: HEIGHT - 1});
+        `game.drawApple({ x: 0, y: 0 });`
+        `game.drawApple({ x: 10, y: 10 });`
+        `game.drawStone({ x: 0, y: HEIGHT - 1});`
+        `game.drawStone({ x: WIDTH - 1, y: HEIGHT - 1});`
 
-    Narysuje jabłko w lewym górnym rogu oraz na pozycji punkcie
-    `(10, 10)`, a także kamień w lewym dolnym i prawym dolnym rogu.
+    narysuje jabłko w lewym górnym rogu planszy, kolejne jabłko w punkcie
+    `(10, 10)`, a następnie kamień w lewym dolnym i prawym dolnym rogu planszy.
 
- *  Funkcje `game.drawSnakeHead`, `game.drawSnakeBody` oraz
-    `game.drawSnakeTail` rysują poszczególne części węża–głowę,
+ *  Funkcje `game.drawSnakeHead` (po angielsku "narysuj głowę węża"),
+    `game.drawSnakeBody` ("narysuj ciało węża") oraz `game.drawSnakeTail`
+    ("narysuj ogon węża") rysują poszczególne części węża: głowę,
     fragment ciała oraz ogon.
 
-    Przyjmują one dwa argumenty.  Pierwszy określa pozycję danego
-    fragmentu węża, a drugi jego kształt.  Ponieważ wąż wije się
-    w różnych kierunkach, jego ciało może przyjmować kształt różnych
-    wygibasów.
+    Każda z tych funkcji przyjmuje po dwa argumenty.  Pierwszy argument
+    określa pozycję danego fragmentu węża (w postaci współrzędnych x i y),
+    a drugi argument - jego kształt.  Ponieważ wąż wije się w różnych kierunkach,
+    jego ciało może przyjmować kształt różnych wygibasów.
 
-    Kształt ten jest określany poprzez jedną z poniższych wartości:
+    Kształt ten będziesz określać przez jedną z poniższych wartości:
 
      *  `Direction.LEFT_FROM_RIGHT` lub `Direction.LEFT`—wąż porusza
         się z prawej na lewą stronę: ←
@@ -185,7 +198,7 @@ TODO: Opis współrzędnych oraz faktu, że framework korzysta z obiektów
      *  `Direction.UP_FROM_RIGHT`— porusza się z lewej w górę: ⬑
      *  `Direction.DOWN_FROM_RIGHT`— porusza się z lewej w dół: ⬐
 
-    Przykładowo, sekwencja:
+    Przykładowo, taki kod:
 
         game.drawSnakeHead({ x: 10, y: 10 }, Direction.UP_FROM_DOWN);
         game.drawSnakeBody({ x: 10, y: 11 }, Direction.UP_FROM_RIGHT);
@@ -201,6 +214,19 @@ TODO: Opis współrzędnych oraz faktu, że framework korzysta z obiektów
 
 ### `snake.html`
 
-Plik `snake.html` to prosty dokument HTML, który definiuje przestrzeń,
+Plik `snake.html` to dokument HTML, który definiuje przestrzeń,
 na której rysowana będzie plansza do gry i ruchy węża, a także
 element, w którym wyświetlany będzie aktualny wynik gry.
+Nie musisz go zmieniać.
+
+### Wszystko jasne?
+
+Jeśli masz jakieś wątpliwości, chcesz się dowiedzieć więcej o tym, jak
+działa kod, albo po prostu przydałaby Ci się podpowiedź w jakimś fragmencie zadania,
+to pamiętaj, że chętnie Ci pomożemy. Czekamy na Twoje pytania na naszym forum
+[WebMuses Youth](https://plus.google.com/u/0/communities/116917969489436061702), a także
+pod adresem mailowym dresscode-pl@google.com
+
+**Powodzenia, trzymamy za Ciebie kciuki!**
+
+zespół DressCode
