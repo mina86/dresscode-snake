@@ -38,7 +38,7 @@ var HEIGHT = 30;
  * game.drawSnakeHead, game.drawSnakeBody oraz game.drawSnakeTail.
  * @enum {string}
  */
-var Direction = {
+var Shape = {
     /** Wąż porusza się z prawej na lewą stronę: ← */
     LEFT: 'l',
     /** Wąż porusza się z lewej na prawą stronę. → */
@@ -314,37 +314,34 @@ var randomPoint = function() {
     };
 
     /**
-     * Zwraca pierwszą część opisu kierunku.  Np. dla Direction.UP_FROM_LEFT
-     * jest to Direction.UP a dla Direction.LEFT jest to po prostu
-     * Direction.LEFT.
+     * Zwraca pierwszą część opisu kierunku.  Np. dla Shape.UP_FROM_LEFT jest to
+     * Shape.UP a dla Shape.LEFT jest to po prostu Shape.LEFT.
      *
-     * @param {Direction} dir Kierunek.
-     * @return {Direction} Direction.UP, Direction.DOWN, Direction.LEFT lub
-     *     Direction.RIGHT zależnie od argumentu dir.
+     * @param {Shape} dir Kierunek.
+     * @return {Shape} Shape.UP, Shape.DOWN, Shape.LEFT lub Shape.RIGHT zależnie
+     *     od argumentu dir.
      */
-    var directionHead = function(dir) {
-        return /** @type {Direction} */ (dir.charAt(0));
+    var shapeTowards = function(dir) {
+        return /** @type {Shape} */ (dir.charAt(0));
     };
 
     /**
      * Mapowanie pomiędzy przeciwnymi, jednoliterowymi kierunkami.
-     * @const {!Object<Direction, Direction>}
+     * @const {!Object<Shape, Shape>}
      */
     var oppositeDirection = { 'l': 'r', 'r': 'l', 'u': 'd', 'd': 'u' };
 
     /**
-     * Zwraca drugą część opisu kierunku.  Np. dla Direction.UP_FROM_LEFT jest
-     * to Direction.LEFT a dla Direction.LEFT jest to po prostu Direction.RIGHT
-     * (gdyż Direction.LEFT zachowuje się tak samo jak
-     * Direction.LEFT_FROM_RIGHT).
+     * Zwraca drugą część opisu kierunku.  Np. dla Shape.UP_FROM_LEFT jest to
+     * Shape.LEFT a dla Shape.LEFT jest to po prostu Shape.RIGHT (gdyż
+     * Shape.LEFT zachowuje się tak samo jak Shape.LEFT_FROM_RIGHT).
      *
-     * @param {Direction} dir Kierunek.
-     * @return {Direction} Direction.UP, Direction.DOWN, Direction.LEFT lub
-     *     Direction.RIGHT zależnie od argumentu dir.
+     * @param {Shape} dir Kierunek.
+     * @return {Shape} Shape.UP, Shape.DOWN, Shape.LEFT lub Shape.RIGHT zależnie
+     *     od argumentu dir.
      */
-    var directionTail = function(dir) {
-        return oppositeDirection[dir] || /** @type {Direction} */ (
-            dir.charAt(1));
+    var shapeFrom = function(dir) {
+        return oppositeDirection[dir] || /** @type {Shape} */ (dir.charAt(1));
     };
 
     /**
@@ -361,8 +358,8 @@ var randomPoint = function() {
      *
      * @param {{x:number, y:number}} p Współrzędne kawałka ciała węża w postaci
      *     obiektu z polami x oraz y.
-     * @param {...Direction} var_args Część do narysowania.  Może być 'l', 'r',
-     *     'u' lub 'd' dla odpowiednio części ciała dotykającej lewej, prawej,
+     * @param {...Shape} var_args Część do narysowania.  Może być 'l', 'r', 'u'
+     *     lub 'd' dla odpowiednio części ciała dotykającej lewej, prawej,
      *     górnej lub dolnej krawędzie pola.  Środek pola jest zawsze rysowany.
      * @return {!Array<number>} Cztery współrzędne małego kwadratu w środku
      *     pola.  Innymi słowy [x1 + s, y1 + s, x2 - s, y2 - s].
@@ -383,10 +380,10 @@ var randomPoint = function() {
 
         for (var i = 1; (p = arguments[i]); ++i) {
             switch (p) {
-            case Direction.LEFT:  rect(x1    , y1 + s, x2 - s, y2 - s); break;
-            case Direction.RIGHT: rect(x1 + s, y1 + s, x2    , y2 - s); break;
-            case Direction.UP:    rect(x1 + s, y1    , x2 - s, y2 - s); break;
-            case Direction.DOWN:  rect(x1 + s, y1 + s, x2 - s, y2    ); break;
+            case Shape.LEFT:  rect(x1    , y1 + s, x2 - s, y2 - s); break;
+            case Shape.RIGHT: rect(x1 + s, y1 + s, x2    , y2 - s); break;
+            case Shape.UP:    rect(x1 + s, y1    , x2 - s, y2 - s); break;
+            case Shape.DOWN:  rect(x1 + s, y1 + s, x2 - s, y2    ); break;
             }
         }
 
@@ -399,14 +396,14 @@ var randomPoint = function() {
      * Rysuje głowę węża wraz z jego oczami.
      * @param {{x:number, y:number}} p Współrzędne głowy węża w postaci obiektu
      *     z polami x oraz y.
-     * @param {Direction} dir Kierunek w który patrzy się wąż.  Jeżeli wąż
-     *     składa się nie tylko z głowy, również określa gdzie z którego
-     *     kierunku wąż się porusza.
+     * @param {Shape} dir Kierunek w który patrzy się wąż.  Jeżeli wąż składa
+     *     się nie tylko z głowy, również określa gdzie z którego kierunku wąż
+     *     się porusza.
      */
     game.drawSnakeHead = function drawSnakeHead(p, dir) {
-        var rect = drawBodyPart(p, directionTail(dir));
+        var rect = drawBodyPart(p, shapeFrom(dir));
         var s = (rect[2] - rect[0]) / 3;
-        dir = directionHead(dir);
+        dir = shapeTowards(dir);
 
         ctx.beginPath();
         ctx.fillStyle = Color.EYE;
@@ -428,20 +425,20 @@ var randomPoint = function() {
      * Rysuje kawałek ciała węża.
      * @param {{x:number, y:number}} p Współrzędne kawałka ciała węża w postaci
      *     obiektu z polami x oraz y.
-     * @param {Direction} dir Kierunek/kształt zadanego kawałka ciała węża.
+     * @param {Shape} dir Kierunek/kształt zadanego kawałka ciała węża.
      */
     game.drawSnakeBody = function drawSnakeBody(p, dir) {
-        drawBodyPart(p, directionHead(dir), directionTail(dir));
+        drawBodyPart(p, shapeTowards(dir), shapeFrom(dir));
     };
 
     /**
      * Rysuje ogon węża.
      * @param {{x:number, y:number}} p Współrzędne ogona węża w postaci obiektu
      *     z polami x oraz y.
-     * @param {Direction} dir Kierunek w którym ciało węża się kontynuuje.
+     * @param {Shape} dir Kierunek w którym ciało węża się kontynuuje.
      */
     game.drawSnakeTail = function drawSnakeTail(p, dir) {
-        drawBodyPart(p, directionHead(dir));
+        drawBodyPart(p, shapeTowards(dir));
     };
 
     /* Obsługa klawiatury. */

@@ -85,27 +85,27 @@ game.drawStone({ x: WIDTH - 1, y: HEIGHT - 1 });</code></pre>
 <p>Każda z tych funkcji przyjmuje po dwa argumenty. Pierwszy argument określa pozycję danego fragmentu węża (w postaci współrzędnych x i y), a drugi argument—jego kształt. Ponieważ wąż wije się w różnych kierunkach, jego ciało może przyjmować kształt różnych wygibasów.</p>
 <p>Kształt ten będziesz określać przez jedną z poniższych wartości:</p>
 <ul>
-<li><code>Direction.LEFT_FROM_RIGHT</code> lub <code>Direction.LEFT</code>—wąż porusza się z prawej na lewą stronę: ←</li>
-<li><code>Direction.RIGHT_FROM_LEFT</code> lub <code>Direction.RIGHT</code>—wąż porusza się z lewej na prawą stronę: →</li>
-<li><code>Direction.UP_FROM_DOWN</code> lub <code>Direction.UP</code>—wąż porusza się z dołu na górę: ↑</li>
-<li><code>Direction.DOWN_FROM_UP</code> lub <code>Direction.DOWN</code>—wąż porusza się z góry na dół: ↓</li>
-<li><code>Direction.LEFT_FROM_DOWN</code>—wąż porusza się z dołu w lewo: ↰</li>
-<li><code>Direction.LEFT_FROM_UP</code>— porusza się z góry w lewo: ↲</li>
-<li><code>Direction.RIGHT_FROM_DOWN</code>— porusza się z dołu w prawo: ↱</li>
-<li><code>Direction.RIGHT_FROM_UP</code>— porusza się z góry w prawo: ↳</li>
-<li><code>Direction.UP_FROM_LEFT</code>— porusza się z lewej w górę: ⬏</li>
-<li><code>Direction.DOWN_FROM_LEFT</code>— porusza się z lewej w dół: ⬎</li>
-<li><code>Direction.UP_FROM_RIGHT</code>— porusza się z lewej w górę: ⬑</li>
-<li><code>Direction.DOWN_FROM_RIGHT</code>— porusza się z lewej w dół: ⬐</li>
+<li><code>Shape.LEFT_FROM_RIGHT</code> lub <code>Shape.LEFT</code>—wąż porusza się z prawej na lewą stronę: ←</li>
+<li><code>Shape.RIGHT_FROM_LEFT</code> lub <code>Shape.RIGHT</code>—wąż porusza się z lewej na prawą stronę: →</li>
+<li><code>Shape.UP_FROM_DOWN</code> lub <code>Shape.UP</code>—wąż porusza się z dołu na górę: ↑</li>
+<li><code>Shape.DOWN_FROM_UP</code> lub <code>Shape.DOWN</code>—wąż porusza się z góry na dół: ↓</li>
+<li><code>Shape.LEFT_FROM_DOWN</code>—wąż porusza się z dołu w lewo: ↰</li>
+<li><code>Shape.LEFT_FROM_UP</code>— porusza się z góry w lewo: ↲</li>
+<li><code>Shape.RIGHT_FROM_DOWN</code>— porusza się z dołu w prawo: ↱</li>
+<li><code>Shape.RIGHT_FROM_UP</code>— porusza się z góry w prawo: ↳</li>
+<li><code>Shape.UP_FROM_LEFT</code>— porusza się z lewej w górę: ⬏</li>
+<li><code>Shape.DOWN_FROM_LEFT</code>— porusza się z lewej w dół: ⬎</li>
+<li><code>Shape.UP_FROM_RIGHT</code>— porusza się z lewej w górę: ⬑</li>
+<li><code>Shape.DOWN_FROM_RIGHT</code>— porusza się z lewej w dół: ⬐</li>
 </ul>
 <p>Przykładowo, taki kod:</p>
-<pre><code>game.drawSnakeHead({ x: 10, y: 10 }, Direction.UP_FROM_DOWN);
-game.drawSnakeBody({ x: 10, y: 11 }, Direction.UP_FROM_RIGHT);
-game.drawSnakeBody({ x: 11, y: 11 }, Direction.LEFT_FROM_RIGHT);
-game.drawSnakeBody({ x: 12, y: 11 }, Direction.LEFT_FROM_RIGHT);
-game.drawSnakeBody({ x: 13, y: 11 }, Direction.LEFT_FROM_DOWN);
-game.drawSnakeBody({ x: 13, y: 12 }, Direction.UP_FROM_DOWN);
-game.drawSnakeTail({ x: 13, y: 13 }, Direction.UP_FROM_DOWN);</code></pre>
+<pre><code>game.drawSnakeHead({ x: 10, y: 10 }, Shape.UP_FROM_DOWN);
+game.drawSnakeBody({ x: 10, y: 11 }, Shape.UP_FROM_RIGHT);
+game.drawSnakeBody({ x: 11, y: 11 }, Shape.LEFT_FROM_RIGHT);
+game.drawSnakeBody({ x: 12, y: 11 }, Shape.LEFT_FROM_RIGHT);
+game.drawSnakeBody({ x: 13, y: 11 }, Shape.LEFT_FROM_DOWN);
+game.drawSnakeBody({ x: 13, y: 12 }, Shape.UP_FROM_DOWN);
+game.drawSnakeTail({ x: 13, y: 13 }, Shape.UP_FROM_DOWN);</code></pre>
 <p>Narysuje węża w kształcie pokazanym na poniższym obrazku:</p>
 <figure>
 <img src="snake-draw-example.png" alt="Przykładowy wąż" /><figcaption>Przykładowy wąż</figcaption>
