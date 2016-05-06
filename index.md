@@ -1,6 +1,6 @@
-**Start:** 5 maja 2016
+**Start:** 6 maja 2016
 
-**Termin nadsyłania rozwiązań:** 30 maja 2016
+**Termin nadsyłania rozwiązań:** 10 czerwca 2016
 
 **Czas, który będzie Ci potrzebny na rozwiązanie całego zadania**: 16 godzin
 
@@ -61,7 +61,7 @@ to lewy górny róg i współrzędne X rosną w prawo, a Y—w dół.
 ## Zadanie
 
 Aby ułatwić Ci zadanie, przygotowaliśmy szkielet rozwiązania w postaci
-trzech plików.  Pobierz na swój komputer następujące pliki:
+trzech plików.  Pobierz na swój komputer następujące pliki (kliknij prawym przyciskiem na nazwę pliku i wybierz "zapisz jako..." - w efekcie plik powinien zapisać się na Twoim dysku):
 
  *  [`snake.html`](http://mina86.github.io/dresscode-snake/files/snake.html),
  *  [`snake-framework.js`](http://mina86.github.io/dresscode-snake/files/snake-framework.js) oraz
@@ -250,13 +250,17 @@ wskazówek, które możesz zastosować:
     się żywił, jak i kamienie, które będą kończyć grę, ale warto
     zacząć bez kamieni i dodać je dopiero później.
 
+## Wysyłanie rozwiązań
+
+Po napisaniu swojej gry w Węża wyślij nam rozwiązanie (zawartość Twojego pliku `snake.js` - pamiętaj, tylko ten plik powinnaś zmieniać!)  przy użyciu [tego formularza](https://docs.google.com/forms/d/1b2vDQAS26M_xYqkO08mCQEojsraqL2cUmVMZiYhlvrs/viewform).
+
 ## Wszystko jasne?
 
 Jeśli masz jakieś wątpliwości, chcesz się dowiedzieć więcej o tym, jak
 działa kod, albo po prostu przydałaby Ci się podpowiedź w jakimś fragmencie zadania,
 to pamiętaj, że chętnie Ci pomożemy. Czekamy na Twoje pytania na naszym forum
 [WebMuses Youth](https://plus.google.com/u/0/communities/116917969489436061702), a także
-pod adresem mailowym dresscode-pl@google.com
+pod adresem mailowym [dresscode-pl@google.com](mailto:dresscode-pl@google.com).
 
 **Powodzenia, trzymamy za Ciebie kciuki!**
 
