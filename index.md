@@ -201,13 +201,13 @@ przekazywać ją do poszczególnych funkcji.
      *  `Shape.DOWN_FROM_UP` lub `Shape.DOWN`—wąż porusza się z góry
         na dół: ↓
      *  `Shape.LEFT_FROM_DOWN`—wąż porusza się z dołu w lewo: ↰
-     *  `Shape.LEFT_FROM_UP`— porusza się z góry w lewo: ↲
-     *  `Shape.RIGHT_FROM_DOWN`— porusza się z dołu w prawo: ↱
-     *  `Shape.RIGHT_FROM_UP`— porusza się z góry w prawo: ↳
-     *  `Shape.UP_FROM_LEFT`— porusza się z lewej w górę: ⬏
-     *  `Shape.DOWN_FROM_LEFT`— porusza się z lewej w dół: ⬎
-     *  `Shape.UP_FROM_RIGHT`— porusza się z lewej w górę: ⬑
-     *  `Shape.DOWN_FROM_RIGHT`— porusza się z lewej w dół: ⬐
+     *  `Shape.LEFT_FROM_UP`— wąż porusza się z góry w lewo: ↲
+     *  `Shape.RIGHT_FROM_DOWN`—wąż porusza się z dołu w prawo: ↱
+     *  `Shape.RIGHT_FROM_UP`—wąż porusza się z góry w prawo: ↳
+     *  `Shape.UP_FROM_LEFT`—wąż porusza się z lewej w górę: ⬏
+     *  `Shape.DOWN_FROM_LEFT`—wąż porusza się z lewej w dół: ⬎
+     *  `Shape.UP_FROM_RIGHT`—wąż porusza się z lewej w górę: ⬑
+     *  `Shape.DOWN_FROM_RIGHT`—wąż porusza się z lewej w dół: ⬐
 
     Przykładowo, taki kod:
 
